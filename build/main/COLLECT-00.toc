@@ -1,0 +1,345 @@
+([('main.exe',
+   'D:\\Ed\\7 sem\\BD\\db_proj\\build\\main\\main.exe',
+   'EXECUTABLE'),
+  ('python39.dll',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\python39.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qicns.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qicns.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qico.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qico.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qtiff.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qtiff.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qsvg.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qsvg.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qtga.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qtga.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\platforms\\qwindows.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qwindows.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\platforms\\qminimal.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qminimal.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qgif.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qgif.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qwbmp.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qwbmp.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\iconengines\\qsvgicon.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\iconengines\\qsvgicon.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\opengl32sw.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\Lib\\site-packages\\PyQt6\\Qt6\\bin\\opengl32sw.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\sqldrivers\\qsqlpsql.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\sqldrivers\\qsqlpsql.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\sqldrivers\\qsqlodbc.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\sqldrivers\\qsqlodbc.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qwebp.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qwebp.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\styles\\qwindowsvistastyle.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\styles\\qwindowsvistastyle.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\sqldrivers\\qsqlite.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\sqldrivers\\qsqlite.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\platforms\\qoffscreen.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\platforms\\qoffscreen.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\plugins\\imageformats\\qjpeg.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\plugins\\imageformats\\qjpeg.dll',
+   'BINARY'),
+  ('_lzma',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_bz2',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('select',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('_socket',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('_decimal',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('unicodedata',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('_ssl',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_ssl.pyd',
+   'EXTENSION'),
+  ('PyQt6.QtWidgets',
+   'D:\\Ed\\7 sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\QtWidgets.pyd',
+   'EXTENSION'),
+  ('PyQt6.QtGui',
+   'D:\\Ed\\7 sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\QtGui.pyd',
+   'EXTENSION'),
+  ('_elementtree',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_elementtree.pyd',
+   'EXTENSION'),
+  ('pyexpat',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\pyexpat.pyd',
+   'EXTENSION'),
+  ('PyQt6.sip',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\sip.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('PyQt6.QtCore',
+   'D:\\Ed\\7 sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\QtCore.pyd',
+   'EXTENSION'),
+  ('PyQt6.QtSql',
+   'D:\\Ed\\7 sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\QtSql.pyd',
+   'EXTENSION'),
+  ('_sqlite3',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_sqlite3.pyd',
+   'EXTENSION'),
+  ('PyQt6\\Qt6\\bin\\Qt6Gui.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Gui.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\Qt6Core.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Core.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\Qt6Svg.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Svg.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\vcruntime140_1.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\msvcp140.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\MSVCP140.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\Qt6Sql.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Sql.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\Qt6Widgets.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\Qt6Widgets.dll',
+   'BINARY'),
+  ('libcrypto-1_1.dll',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('libssl-1_1.dll',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\libssl-1_1.dll',
+   'BINARY'),
+  ('python3.dll',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\python3.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\msvcp140_2.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\MSVCP140_2.dll',
+   'BINARY'),
+  ('sqlite3.dll',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\sqlite3.dll',
+   'BINARY'),
+  ('PyQt6\\Qt6\\bin\\msvcp140_1.dll',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\bin\\MSVCP140_1.dll',
+   'BINARY'),
+  ('base_library.zip',
+   'D:\\Ed\\7 sem\\BD\\db_proj\\build\\main\\base_library.zip',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_tr.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_tr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_it.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_it.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\__pycache__\\qtquickwidgets.cpython-39.pyc',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\__pycache__\\qtquickwidgets.cpython-39.pyc',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_sk.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_sk.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_gd.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_gd.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_fr.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fr.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ko.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ko.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_zh_TW.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_zh_TW.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_de.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_de.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_pt_BR.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_pt_BR.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_fi.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fi.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\__pycache__\\qtprintsupport.cpython-39.pyc',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\__pycache__\\qtprintsupport.cpython-39.pyc',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_nn.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_nn.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_he.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_he.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_en.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_en.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\__pycache__\\qtwebenginewidgets.cpython-39.pyc',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\__pycache__\\qtwebenginewidgets.cpython-39.pyc',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\qtquickwidgets.py',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\qtquickwidgets.py',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_hr.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_hr.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\qtcharts.py',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\qtcharts.py',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ca.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ca.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_zh_CN.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_zh_CN.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\qtprintsupport.py',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\qtprintsupport.py',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ar.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ar.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\qaxcontainer.py',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\qaxcontainer.py',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_uk.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_uk.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_cs.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_cs.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ja.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ja.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\__pycache__\\qscintilla.cpython-39.pyc',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\__pycache__\\qscintilla.cpython-39.pyc',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_pl.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_pl.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_ru.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_ru.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_bg.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_bg.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_da.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_da.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_es.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_es.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\__pycache__\\qaxcontainer.cpython-39.pyc',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\__pycache__\\qaxcontainer.cpython-39.pyc',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_hu.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_hu.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\__pycache__\\qtcharts.cpython-39.pyc',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\__pycache__\\qtcharts.cpython-39.pyc',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_lv.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_lv.qm',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_nl.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_nl.qm',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\qtwebenginewidgets.py',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\qtwebenginewidgets.py',
+   'DATA'),
+  ('PyQt6\\uic\\widget-plugins\\qscintilla.py',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\uic\\widget-plugins\\qscintilla.py',
+   'DATA'),
+  ('PyQt6\\Qt6\\translations\\qtbase_fa.qm',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyQt6\\Qt6\\translations\\qtbase_fa.qm',
+   'DATA')],)
