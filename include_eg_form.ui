@@ -17,9 +17,9 @@
    <widget class="QTableView" name="expertGroupTableView">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>340</x>
       <y>10</y>
-      <width>601</width>
+      <width>771</width>
       <height>851</height>
      </rect>
     </property>
@@ -29,8 +29,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>481</width>
-      <height>61</height>
+      <width>321</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -41,9 +41,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
-      <width>481</width>
-      <height>61</height>
+      <y>70</y>
+      <width>321</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -54,9 +54,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>800</y>
-      <width>481</width>
-      <height>61</height>
+      <y>810</y>
+      <width>321</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>722</width>
-    <height>796</height>
+    <width>703</width>
+    <height>794</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>100</y>
-      <width>681</width>
+      <width>671</width>
       <height>571</height>
      </rect>
     </property>
@@ -51,43 +51,30 @@
      <bool>false</bool>
     </attribute>
    </widget>
-   <widget class="QPushButton" name="ExpertTableButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>221</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Таблица Expert</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="GrntiTableButton">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>360</x>
       <y>20</y>
-      <width>221</width>
+      <width>331</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>Таблица Grntirub</string>
+     <string>Таблица кодов и рубрик</string>
     </property>
    </widget>
    <widget class="QPushButton" name="RegionTableButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>20</x>
       <y>20</y>
-      <width>221</width>
+      <width>331</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>Таблица Reg_obl_city</string>
+     <string>Таблица регионов, областей и городов</string>
     </property>
    </widget>
    <widget class="QPushButton" name="returnToMainButton">
@@ -95,7 +82,7 @@
      <rect>
       <x>20</x>
       <y>680</y>
-      <width>681</width>
+      <width>671</width>
       <height>71</height>
      </rect>
     </property>
@@ -109,7 +96,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>722</width>
+     <width>703</width>
      <height>21</height>
     </rect>
    </property>

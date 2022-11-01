@@ -6,6 +6,7 @@ from PyQt6.QtSql import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from PyQt6.QtWidgets import *
+from PyQt6 import QtGui
 Form_main, Window_main = uic.loadUiType("main_form.ui")
 Form_add, Window_add = uic.loadUiType("add_form.ui")
 Form_edit, Window_edit = uic.loadUiType("edit_form.ui")
@@ -27,50 +28,37 @@ def connect_db(database_name):
 
 #---Отображение таблиц
 
-def clicked_expert():
-    table_model = QSqlTableModel()
-    table_model.setTable("Expert_final")
-    table_model.select()
-
-    # loading all data
-    while table_model.canFetchMore():
-        table_model.fetchMore()
-    table_model.rowCount()
-    form_show.databaseTableView.setSortingEnabled(True)
-    form_show.databaseTableView.setModel(table_model)
-    form_show.databaseTableView.resizeColumnsToContents()
-    form_show.databaseTableView.verticalHeader().setVisible(False)
-    form_show.databaseTableView.hideColumn(6)
-    form_show.databaseTableView.hideColumn(7)
-    form_show.databaseTableView.hideColumn(9)
-    form_show.databaseTableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
 def clicked_region():
-    table_model = QSqlTableModel()
-    table_model.setTable("Reg_obl_city")
-    table_model.select()
+    table_model_region = QSqlTableModel()
+    table_model_region.setTable("Reg_obl_city")
+    table_model_region.select()
+    table_model_region.setHeaderData(0, Qt.Orientation.Horizontal, "Регион")
+    table_model_region.setHeaderData(1, Qt.Orientation.Horizontal, "Область")
+    table_model_region.setHeaderData(2, Qt.Orientation.Horizontal, "Город")
     # loading all data
-    while table_model.canFetchMore():
-        table_model.fetchMore()
-    table_model.rowCount()
+    while table_model_region.canFetchMore():
+        table_model_region.fetchMore()
+    table_model_region.rowCount()
     #
     form_show.databaseTableView.setSortingEnabled(True)
-    form_show.databaseTableView.setModel(table_model)
+    form_show.databaseTableView.setModel(table_model_region)
     form_show.databaseTableView.resizeColumnsToContents()
     form_show.databaseTableView.verticalHeader().setVisible(False)
     form_show.databaseTableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
 def clicked_grnti():
-    table_model = QSqlTableModel()
-    table_model.setTable("grntirub")
-    table_model.select()
+    table_model_grnti = QSqlTableModel()
+    table_model_grnti.setTable("grntirub")
+    table_model_grnti.select()
+    table_model_grnti.setHeaderData(0, Qt.Orientation.Horizontal, "Код")
+    table_model_grnti.setHeaderData(1, Qt.Orientation.Horizontal, "Рубрика")
     # loading all data
-    while table_model.canFetchMore():
-        table_model.fetchMore()
-    table_model.rowCount()
+    while table_model_grnti.canFetchMore():
+        table_model_grnti.fetchMore()
+    table_model_grnti.rowCount()
     #
     form_show.databaseTableView.setSortingEnabled(True)
-    form_show.databaseTableView.setModel(table_model)
+    form_show.databaseTableView.setModel(table_model_grnti)
     form_show.databaseTableView.resizeColumnsToContents()
     form_show.databaseTableView.verticalHeader().setVisible(False)
     form_show.databaseTableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -212,9 +200,10 @@ def get_input_data():
     today = date.today()
     input_date=today.strftime("%d.%m.%Y")
     if (grnti_list and name and region_city_check(region,city)):
-        values = [kod, name, region, city, grnti_list[0], grnti_list[1], None, 0, input_date, grnti_list[2]]
+        values = [kod, name, region, city, grnti_list[0], grnti_list[1], None, 0, input_date, grnti_list[2],"Не состоит"]
         if same_person_check(name, city):
             msg = QMessageBox()
+            msg.setWindowIcon(QtGui.QIcon('icon.png'))
             msg.setIcon(QMessageBox.Icon.Question)
             msg.setWindowTitle("Внимание")
             msg.setText("Человек с таким же ФИО в указанном городе уже находится в базе данных. Вы действительно хотите продолжить?")
@@ -242,7 +231,9 @@ def get_input_data():
             form_add.cityComboBox.clear()
             form_add.grntiLineAdd.clear()
             window_add.close()
-            window_main.show()
+            table_model.select()
+            load_all_data()
+            #window_main.show()
     else:
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Icon.Critical)
@@ -254,12 +245,28 @@ def get_input_data():
 def insert_into_db(values):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    cur.execute("""INSERT INTO Expert_final VALUES(?,?,?,?,?,?,?,?,?,?)""", values).fetchall()
+    cur.execute("""INSERT INTO Expert_final VALUES(?,?,?,?,?,?,?,?,?,?,?)""", values).fetchall()
     con.commit()
     cur.close()
     con.close()
 
 #---Работа с таблицами
+
+def confirm_deletion():
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Icon.Question)
+    msg.setWindowTitle("Подтверждение действия")
+    msg.setText("Вы действительно хотите удалить выбранные строки?")
+    msg.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+    buttonY = msg.button(QMessageBox.StandardButton.Yes)
+    buttonY.setText('Да')
+    buttonN = msg.button(QMessageBox.StandardButton.No)
+    buttonN.setText('Нет')
+    msg.exec()
+    if msg.clickedButton() == buttonY:
+        delete_selected()
+    elif msg.clickedButton() == buttonN:
+        msg.close()
 
 def load_all_data():
     while table_model.canFetchMore():
@@ -357,9 +364,14 @@ def include_in_eg():
     rows_selected_kod=get_selected_kod()
     for kod in rows_selected_kod:
         query = QSqlQuery()
+        query.prepare("UPDATE Expert_final SET status = 'На рассмотрении' WHERE kod=?")
+        query.bindValue(0, kod)
+        query.exec()
         query.prepare("INSERT INTO Expert_group SELECT * FROM Expert_final WHERE kod=?")
         query.bindValue(0, kod)
         query.exec()
+    table_model.select()
+    load_all_data()
     delete_duplicates_in_eg()
     table_model_eg.select()
     form_include_eg.expertGroupTableView.resizeColumnsToContents()
@@ -375,10 +387,15 @@ def delete_selected_eg():
         rows_selected_kod.append(index.data())
     for kod in rows_selected_kod:
         query = QSqlQuery()
+        query.prepare("UPDATE Expert_final SET status = 'Не состоит' WHERE kod=?")
+        query.bindValue(0, kod)
+        query.exec()
         query.prepare("DELETE FROM Expert_group WHERE kod=?")
         query.bindValue(0, kod)
         query.exec()
     table_model_eg.select()
+    table_model.select()
+    load_all_data()
 
 def confirm_eg():
     kod_list=[]
@@ -392,11 +409,17 @@ def confirm_eg():
         kod_list.append(res[i][0])
     print(kod_list)
     if len(kod_list):
+
+        for kod in kod_list:
+            con = sqlite3.connect(database_name)
+            cur = con.cursor()
+            res = cur.execute("UPDATE Expert_final SET take_part = take_part + 1, status = 'Утвержден' WHERE kod = '{}'".format(kod)).fetchall()
+            #?
+            con.commit()
+            cur.close()
+            con.close()
         con = sqlite3.connect(database_name)
         cur = con.cursor()
-        for kod in kod_list:
-            res = cur.execute("UPDATE Expert_final SET take_part = take_part + 1 WHERE kod = '{}'".format(kod)).fetchall()
-            con.commit()
         res = cur.execute("DELETE FROM Expert_group")
         con.commit()
         cur.close()
@@ -434,14 +457,6 @@ def return_to_main_from_edit():
     window_edit.close()
     window_main.show()
 
-def open_confirm_window():
-    #window_edit.close()
-    window_confirm_deleting.show()
-
-def return_to_edit_from_confirm():
-    window_confirm_deleting.close()
-    window_edit.show()
-
 def open_edit_row_window():
     #window_edit.close()
     window_edit_row.show()
@@ -456,33 +471,41 @@ def open_include_window():
 def return_to_edit_from_confirm_eg():
     window_include_eg.close()
 
+def exit_main():
+    app.closeAllWindows()
+
 app = QApplication([])
 window_main = Window_main()
 form_main = Form_main()
 form_main.setupUi(window_main)
 connect_db(database_name)
+window_main.setWindowIcon(QtGui.QIcon('icon.png'))
+window_main.setWindowTitle("Главное меню")
 #form.databaseConnectButton.clicked.connect(lambda: connect_db(database_name))
 #form.showDbButton.clicked.connect()
 form_main.showDataButton.clicked.connect(open_show_window)
+form_main.exitButton.clicked.connect(exit_main)
 
 window_show = Window_show()
 form_show = Form_show()
 form_show.setupUi(window_show)
+window_show.setWindowIcon(QtGui.QIcon('icon.png'))
+window_show.setWindowTitle("Отображение таблиц")
 
-form_show.ExpertTableButton.clicked.connect(clicked_expert)
 form_show.GrntiTableButton.clicked.connect(clicked_grnti)
 form_show.RegionTableButton.clicked.connect(clicked_region)
 form_show.returnToMainButton.clicked.connect(return_to_main_from_show)
 
-form_main.addDataButton.clicked.connect(open_add_window)
+
 form_main.editDataButton.clicked.connect(open_edit_window)
 #form_main.editDataButton.clicked.connect(clicked_edit_expert)
-form_main.addDataButton.clicked.connect(populate_region_combobox)
-form_main.addDataButton.clicked.connect(populate_city_combobox)
+
 
 window_add = Window_add()
 form_add = Form_add()
 form_add.setupUi(window_add)
+window_add.setWindowIcon(QtGui.QIcon('icon.png'))
+window_add.setWindowTitle("Добавление информации")
 
 form_add.addDataButton.clicked.connect(get_input_data)
 form_add.returnToMainButton.clicked.connect(return_to_main_from_add)
@@ -490,12 +513,24 @@ form_add.returnToMainButton.clicked.connect(return_to_main_from_add)
 window_edit = Window_edit()
 form_edit = Form_edit()
 form_edit.setupUi(window_edit)
-window_confirm_deleting=Window_confirm_deleting()
-form_confirm_deleting=Form_confirm_deleting()
-form_confirm_deleting.setupUi(window_confirm_deleting)
+window_edit.setWindowIcon(QtGui.QIcon('icon.png'))
+window_edit.setWindowTitle("Работа с таблицами")
+form_edit.addDataButton.clicked.connect(open_add_window)
+form_edit.addDataButton.clicked.connect(populate_region_combobox)
+form_edit.addDataButton.clicked.connect(populate_city_combobox)
+
 table_model = QSqlTableModel()
 table_model.setTable("Expert_final")
 table_model.select()
+table_model.setHeaderData(0,Qt.Orientation.Horizontal,"Код")
+table_model.setHeaderData(1,Qt.Orientation.Horizontal,"ФИО")
+table_model.setHeaderData(2,Qt.Orientation.Horizontal,"Регион")
+table_model.setHeaderData(3,Qt.Orientation.Horizontal,"Город")
+table_model.setHeaderData(4,Qt.Orientation.Horizontal,"ГРНТИ1")
+table_model.setHeaderData(5,Qt.Orientation.Horizontal,"ГРНТИ2")
+table_model.setHeaderData(7,Qt.Orientation.Horizontal,"Участия")
+table_model.setHeaderData(8,Qt.Orientation.Horizontal,"Дата ввода")
+table_model.setHeaderData(10,Qt.Orientation.Horizontal,"Статус в ЭГ")
 load_all_data()
 form_edit.databaseEditTableView.setSortingEnabled(True)
 form_edit.databaseEditTableView.setModel(table_model)
@@ -557,33 +592,46 @@ proxy_model_input_date.setFilterRegularExpression(QRegularExpression(form_edit.i
 proxy_model_input_date.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
 form_edit.inputDateFilterEdit.textChanged.connect(proxy_model_input_date.setFilterRegularExpression)
 
-form_confirm_deleting.confirmDeletingButton.clicked.connect(delete_selected)
+#form_confirm_deleting.confirmDeletingButton.clicked.connect(delete_selected)
 
 window_edit_row=Window_edit_row()
 form_edit_row=Form_edit_row()
 form_edit_row.setupUi(window_edit_row)
+window_edit_row.setWindowIcon(QtGui.QIcon('icon.png'))
+window_edit_row.setWindowTitle("Редактирование информации")
 
 window_include_eg=Window_include_eg()
 form_include_eg=Form_include_eg()
 form_include_eg.setupUi(window_include_eg)
+window_include_eg.setWindowIcon(QtGui.QIcon('icon.png'))
+window_include_eg.setWindowTitle("Утверждение экспертной группы")
 
 form_edit.databaseEditTableView.doubleClicked.connect(populate_edit_form)
 form_edit.databaseEditTableView.doubleClicked.connect(open_edit_row_window)
 form_edit_row.saveChangesButton.clicked.connect(edit_row)
 #form_edit_row.saveChangesButton.clicked.connect(return_to_edit_from_row)
 form_edit_row.cancelButton.clicked.connect(return_to_edit_from_row)
-form_edit.deleteDataButton.clicked.connect(open_confirm_window)
+form_edit.deleteDataButton.clicked.connect(confirm_deletion)
 form_edit.returnToMainButton.clicked.connect(return_to_main_from_edit)
 #form_edit.addExpertGroupButton.setEnabled(False)
 
 
-form_confirm_deleting.confirmDeletingButton.clicked.connect(return_to_edit_from_confirm)
-form_confirm_deleting.returnToEditButton.clicked.connect(return_to_edit_from_confirm)
+#form_confirm_deleting.confirmDeletingButton.clicked.connect(return_to_edit_from_confirm)
+#form_confirm_deleting.returnToEditButton.clicked.connect(return_to_edit_from_confirm)
 
 form_include_eg.returnToEditButton.clicked.connect(return_to_edit_from_confirm_eg)
 table_model_eg = QSqlTableModel()
 table_model_eg.setTable("Expert_group")
 table_model_eg.select()
+table_model_eg.setHeaderData(0,Qt.Orientation.Horizontal,"Код")
+table_model_eg.setHeaderData(1,Qt.Orientation.Horizontal,"ФИО")
+table_model_eg.setHeaderData(2,Qt.Orientation.Horizontal,"Регион")
+table_model_eg.setHeaderData(3,Qt.Orientation.Horizontal,"Город")
+table_model_eg.setHeaderData(4,Qt.Orientation.Horizontal,"ГРНТИ1")
+table_model_eg.setHeaderData(5,Qt.Orientation.Horizontal,"ГРНТИ2")
+table_model_eg.setHeaderData(7,Qt.Orientation.Horizontal,"Участия")
+table_model_eg.setHeaderData(8,Qt.Orientation.Horizontal,"Дата ввода")
+table_model_eg.setHeaderData(10,Qt.Orientation.Horizontal,"Статус в ЭГ")
 form_include_eg.expertGroupTableView.setModel(table_model_eg)
 form_include_eg.expertGroupTableView.setSortingEnabled(True)
 form_include_eg.expertGroupTableView.sortByColumn(0,Qt.SortOrder.AscendingOrder)
@@ -598,8 +646,6 @@ form_include_eg.confirmExpertGroupButton.clicked.connect(confirm_eg)
 
 form_edit.confirmExpertGroupButton.clicked.connect(open_include_window)
 form_edit.addExpertToGroupButton.clicked.connect(include_in_eg)
-
-
 
 window_main.show()
 app.exec()

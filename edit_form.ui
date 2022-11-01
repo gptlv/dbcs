@@ -218,7 +218,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>330</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -231,7 +231,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>330</y>
+      <y>410</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -244,13 +244,39 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>390</y>
+      <y>470</y>
       <width>321</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>Утверждение экспертной группы</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addDataButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Добавление информации</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>321</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>
