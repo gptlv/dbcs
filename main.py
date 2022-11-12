@@ -83,6 +83,13 @@ def populate_region_combobox():
         list.append(str(x)[2:-3])
     form_add.regionComboBox.addItems(sorted(list))
 
+def populate_region_filter_combobx():
+    list = []
+    data = get_reg_data(database_name)
+    for x in data:
+        list.append(str(x)[2:-3])
+    form_edit.regionFilterComboBox.addItems(sorted(list))
+
 def get_obl_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
@@ -106,6 +113,13 @@ def populate_city_combobox():
     data=get_city_data(database_name)
     for x in data:
         list.append(str(x)[2:-3])
+    form_edit.cityFilterComboBox.addItems(sorted(list))
+
+def populate_city_filter_combobox():
+    list=[]
+    data=get_city_data(database_name)
+    for x in data:
+        list.append(str(x)[2:-3])
     form_add.cityComboBox.addItems(sorted(list))
 
 def id_count():
@@ -115,6 +129,38 @@ def id_count():
     cur.close()
     con.close()
     return sum(last_id[0])
+
+def get_codrub_data(database_name):
+    data=con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    data = []
+    data = cur.execute("SELECT DISTINCT codrub FROM grntirub").fetchall()
+    cur.close()
+    con.close()
+    return data
+
+def populate_codrub_combobox():
+    list = []
+    data = get_codrub_data(database_name)
+    for x in data:
+        list.append(str(x)[2:-3])
+    form_edit.grntiFilterComboBox.addItems(sorted(list))
+
+def get_rubrika_data(database_name):
+    data = con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    data = []
+    data = cur.execute("SELECT DISTINCT rubrika FROM grntirub").fetchall()
+    cur.close()
+    con.close()
+    return data
+
+def populate_rubrika_combobox():
+    list = []
+    data = get_rubrika_data(database_name)
+    for x in data:
+        list.append(str(x)[2:-3])
+    form_edit.keyWordsFilterComboBox.addItems(sorted(list))
 
 #---Проверки ввода
 
@@ -142,15 +188,16 @@ def check_name_input(name):
 
 def check_grnti_input(grnti):
     grnti = re.sub('[^0-9.]', '', grnti)
+    grnti_dict=get_grntirub_dict()
     if len(grnti)==0:
         print("Incorrect grnti")
         return False
-    elif len(grnti)==8:
+    elif len(grnti)==8 and grnti[:2] in grnti_dict:
         grnti1 = grnti[:8]
         grnti2 = ''
         grnti_search = grnti1[:2]
         return [grnti1,grnti2,grnti_search]
-    elif len(grnti)==16:
+    elif len(grnti)==16 and (grnti[:2] in grnti_dict) and (grnti[8:10] in grnti_dict):
         grnti1=grnti[:8]
         grnti2=grnti[8:]
         grnti_search = grnti1[:2]+" "+grnti2[:2]
@@ -187,6 +234,30 @@ def region_city_check(region,city):
     res_dict = get_city_region_dict()
     return city in res_dict and region == res_dict[city]
 
+def get_grntirub_dict():
+    con = con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    data_tuple = cur.execute("SELECT codrub,rubrika FROM grntirub ").fetchall()
+    cur.close()
+    con.close()
+    data_list = list(set(data_tuple))
+    codrub_list = []
+    rubrika_list = []
+    for i in range(len(data_list)):
+        codrub_list.append(data_list[i][0])
+        rubrika_list.append(data_list[i][1])
+    res_dict = dict(zip(codrub_list,rubrika_list))
+    return res_dict
+
+def get_key_words(grnti_list):
+    key_words_list=[]
+    dict=get_grntirub_dict()
+    for kod in grnti_list.split():
+        key_words_list.append(dict[kod])
+        key_words_list.append("; ")
+    key_words = ''.join(key_words_list)
+    return key_words
+
 #---Ввод данных
 
 def get_input_data():
@@ -201,7 +272,8 @@ def get_input_data():
     today = date.today()
     input_date=today.strftime("%d.%m.%Y")
     if (grnti_list and name and region_city_check(region,city)):
-        values = [kod, name, region, city, grnti_list[0], grnti_list[1], None, 0, input_date, grnti_list[2],"Не состоит"]
+        key_words=get_key_words(grnti_list[2])
+        values = [kod, name, region, city, grnti_list[0], grnti_list[1], key_words, 0, input_date, grnti_list[2],"Не состоит"]
         if same_person_check(name, city):
             msg = QMessageBox()
             msg.setWindowIcon(QtGui.QIcon('icon.png'))
@@ -217,8 +289,8 @@ def get_input_data():
             if msg.clickedButton() == buttonY:
                 insert_into_db(values)
                 form_add.nameLineAdd.clear()
-                form_add.regionComboBox.clear()
-                form_add.cityComboBox.clear()
+                #form_add.regionComboBox.clear()
+                #form_add.cityComboBox.clear()
                 form_add.grntiLineAdd.clear()
                 window_add.close()
                 window_main.show()
@@ -227,8 +299,8 @@ def get_input_data():
         else:
             insert_into_db(values)
             form_add.nameLineAdd.clear()
-            form_add.regionComboBox.clear()
-            form_add.cityComboBox.clear()
+            #form_add.regionComboBox.clear()
+            #form_add.cityComboBox.clear()
             form_add.grntiLineAdd.clear()
             window_add.close()
             table_model.select()
@@ -271,6 +343,37 @@ def load_all_data():
     while table_model.canFetchMore():
         table_model.fetchMore()
     table_model.rowCount()
+
+def region_check_box():
+    if form_edit.regionFilterCheckBox.isChecked():
+        form_edit.regionFilterComboBox.setEnabled(True)
+        form_edit.regionFilterComboBox.setCurrentIndex(0)
+    else:
+        form_edit.regionFilterComboBox.setEnabled(False)
+        form_edit.regionFilterComboBox.setCurrentIndex(-1)
+
+def city_check_box():
+    if form_edit.cityFilterCheckBox.isChecked():
+        form_edit.cityFilterComboBox.setEnabled(True)
+        form_edit.cityFilterComboBox.setCurrentIndex(0)
+    else:
+        form_edit.cityFilterComboBox.setEnabled(False)
+        form_edit.cityFilterComboBox.setCurrentIndex(-1)
+def grnti_check_box():
+    if form_edit.grntiFilterCheckBox.isChecked():
+        form_edit.grntiFilterComboBox.setEnabled(True)
+        form_edit.grntiFilterComboBox.setCurrentIndex(0)
+    else:
+        form_edit.grntiFilterComboBox.setEnabled(False)
+        form_edit.grntiFilterComboBox.setCurrentIndex(-1)
+
+def key_words_check_box():
+    if form_edit.keyWordsFilterCheckBox.isChecked():
+        form_edit.keyWordsFilterComboBox.setEnabled(True)
+        form_edit.keyWordsFilterComboBox.setCurrentIndex(0)
+    else:
+        form_edit.keyWordsFilterComboBox.setEnabled(False)
+        form_edit.keyWordsFilterComboBox.setCurrentIndex(-1)
 
 def get_selected_kod():
     rows_selected_kod = []
@@ -327,7 +430,8 @@ def edit_row():
     grnti_list=check_grnti_input(grnti)
     input_date = str(form_edit_row.inputDateRowEdit.text()).strip()
     if (grnti_list and name and region_city_check(region,city)):
-        values = [kod, name, region, city, grnti_list[0], grnti_list[1], None, 0, input_date, grnti_list[2]]
+        key_words = get_key_words(grnti_list[2])
+        values = [kod, name, region, city, grnti_list[0], grnti_list[1], key_words, 0, input_date, grnti_list[2]]
         print(values)
         edit_db_row(values)
         window_edit_row.close()
@@ -515,8 +619,8 @@ def open_add_window():
 
 def return_to_main_from_add():
     form_add.nameLineAdd.clear()
-    form_add.regionComboBox.clear()
-    form_add.cityComboBox.clear()
+    #form_add.regionComboBox.clear()
+    #form_add.cityComboBox.clear()
     form_add.grntiLineAdd.clear()
     window_add.close()
     #window_main.show()
@@ -587,9 +691,9 @@ form_edit = Form_edit()
 form_edit.setupUi(window_edit)
 window_edit.setWindowIcon(QtGui.QIcon('icon.png'))
 window_edit.setWindowTitle("Работа с таблицами")
+populate_region_combobox()
+populate_city_combobox()
 form_edit.addDataButton.clicked.connect(open_add_window)
-form_edit.addDataButton.clicked.connect(populate_region_combobox)
-form_edit.addDataButton.clicked.connect(populate_city_combobox)
 
 table_model = QSqlTableModel()
 table_model.setTable("Expert_final")
@@ -632,29 +736,35 @@ proxy_model_name.setFilterRegularExpression(QRegularExpression(form_edit.nameFil
 proxy_model_name.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
 form_edit.nameFilterEdit.textChanged.connect(proxy_model_name.setFilterRegularExpression)
 
+populate_region_filter_combobx()
+form_edit.regionFilterComboBox.setEnabled(False)
+form_edit.regionFilterComboBox.setCurrentIndex(-1)
+form_edit.regionFilterCheckBox.stateChanged.connect(region_check_box)
 proxy_model_region = QSortFilterProxyModel()
 proxy_model_region.setSourceModel(proxy_model_name)
 form_edit.databaseEditTableView.setModel(proxy_model_region)
 proxy_model_region.setFilterKeyColumn(2)
-proxy_model_region.setFilterRegularExpression(QRegularExpression(form_edit.regionFilterEdit.text()))
-proxy_model_region.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
-form_edit.regionFilterEdit.textChanged.connect(proxy_model_region.setFilterRegularExpression)
+form_edit.regionFilterComboBox.currentTextChanged.connect(proxy_model_region.setFilterFixedString)
 
+populate_city_filter_combobox()
+form_edit.cityFilterComboBox.setEnabled(False)
+form_edit.cityFilterComboBox.setCurrentIndex(-1)
+form_edit.cityFilterCheckBox.stateChanged.connect(city_check_box)
 proxy_model_city = QSortFilterProxyModel()
 proxy_model_city.setSourceModel(proxy_model_region)
 form_edit.databaseEditTableView.setModel(proxy_model_city)
 proxy_model_city.setFilterKeyColumn(3)
-proxy_model_city.setFilterRegularExpression(QRegularExpression(form_edit.cityFilterEdit.text()))
-proxy_model_city.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
-form_edit.cityFilterEdit.textChanged.connect(proxy_model_city.setFilterRegularExpression)
+form_edit.cityFilterComboBox.currentTextChanged.connect(proxy_model_city.setFilterFixedString)
 
+populate_codrub_combobox()
+form_edit.grntiFilterComboBox.setEnabled(False)
+form_edit.grntiFilterComboBox.setCurrentIndex(-1)
+form_edit.grntiFilterCheckBox.stateChanged.connect(grnti_check_box)
 proxy_model_grnti = QSortFilterProxyModel()
 proxy_model_grnti.setSourceModel(proxy_model_city)
 form_edit.databaseEditTableView.setModel(proxy_model_grnti)
 proxy_model_grnti.setFilterKeyColumn(9)
-proxy_model_grnti.setFilterRegularExpression(QRegularExpression(form_edit.grntiFilterEdit.text()))
-proxy_model_grnti.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
-form_edit.grntiFilterEdit.textChanged.connect(proxy_model_grnti.setFilterRegularExpression)
+form_edit.grntiFilterComboBox.currentTextChanged.connect(proxy_model_grnti.setFilterFixedString)
 
 proxy_model_input_date = QSortFilterProxyModel()
 proxy_model_input_date.setSourceModel(proxy_model_grnti)
@@ -663,6 +773,16 @@ proxy_model_input_date.setFilterKeyColumn(8)
 proxy_model_input_date.setFilterRegularExpression(QRegularExpression(form_edit.inputDateFilterEdit.text()))
 proxy_model_input_date.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
 form_edit.inputDateFilterEdit.textChanged.connect(proxy_model_input_date.setFilterRegularExpression)
+
+populate_rubrika_combobox()
+form_edit.keyWordsFilterComboBox.setEnabled(False)
+form_edit.keyWordsFilterComboBox.setCurrentIndex(-1)
+form_edit.keyWordsFilterCheckBox.stateChanged.connect(key_words_check_box)
+proxy_model_key_words = QSortFilterProxyModel()
+proxy_model_key_words.setSourceModel(proxy_model_input_date)
+form_edit.databaseEditTableView.setModel(proxy_model_key_words)
+proxy_model_key_words.setFilterKeyColumn(6)
+form_edit.keyWordsFilterComboBox.currentTextChanged.connect(proxy_model_key_words.setFilterFixedString)
 
 #form_confirm_deleting.confirmDeletingButton.clicked.connect(delete_selected)
 
