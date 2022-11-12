@@ -1,6 +1,7 @@
 import sys
 import sqlite3
 import re
+import openpyxl
 from datetime import date
 from PyQt6.QtSql import *
 from PyQt6.QtCore import *
@@ -223,7 +224,6 @@ def get_input_data():
                 window_main.show()
             elif msg.clickedButton() == buttonN:
                 msg.close()
-        # msg.setInformativeText('More information')
         else:
             insert_into_db(values)
             form_add.nameLineAdd.clear()
@@ -239,7 +239,6 @@ def get_input_data():
         msg.setIcon(QMessageBox.Icon.Critical)
         msg.setWindowTitle("Ошибка")
         msg.setText("Неверный ввод данных")
-        #msg.setInformativeText('More information')
         msg.exec()
 
 def insert_into_db(values):
@@ -304,10 +303,6 @@ def populate_edit_form():
     form_edit_row.cityRowEdit.setText(str(data[3]))
     form_edit_row.grntiRowEdit.setText(str(str(data[4])+" "+str(data[5])))
     form_edit_row.inputDateRowEdit.setText(str(data[8]))
-
-#def clicked_edit_expert():
-
-
 def edit_db_row(values):
     query = QSqlQuery("""UPDATE Expert_final 
                             SET name = '{}',
@@ -321,7 +316,6 @@ def edit_db_row(values):
                                 grnti_search = '{}' 
                             WHERE kod = {}""".format(values[1],values[2],values[3],values[4],values[5],values[6],values[7],values[8],values[9],values[0]))
     query.exec()
-
 
 def edit_row():
     kod = int(form_edit_row.kodRowEdit.text())
@@ -345,7 +339,6 @@ def edit_row():
         msg.setIcon(QMessageBox.Icon.Critical)
         msg.setWindowTitle("Ошибка")
         msg.setText("Неверный ввод данных")
-        # msg.setInformativeText('More information')
         msg.exec()
 
 def delete_selected():
@@ -409,7 +402,6 @@ def confirm_eg():
         kod_list.append(res[i][0])
     print(kod_list)
     if len(kod_list):
-
         for kod in kod_list:
             con = sqlite3.connect(database_name)
             cur = con.cursor()
@@ -418,15 +410,95 @@ def confirm_eg():
             con.commit()
             cur.close()
             con.close()
-        con = sqlite3.connect(database_name)
-        cur = con.cursor()
-        res = cur.execute("DELETE FROM Expert_group")
-        con.commit()
-        cur.close()
-        con.close()
+        expert_group_name=str(form_include_eg.expertGroupNameEdit.text()).strip()
+        if expert_group_name:
+            export_to_xlsx(expert_group_name)
+            con = sqlite3.connect(database_name)
+            cur = con.cursor()
+            res = cur.execute("DELETE FROM Expert_group")
+            con.commit()
+            cur.close()
+            con.close()
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setWindowTitle("Ошибка")
+            msg.setText("Некорректное название")
+            msg.exec()
         table_model_eg.select()
         table_model.select()
         load_all_data()
+        form_include_eg.expertGroupNameEdit.clear()
+def export_to_xlsx(expert_group_name):
+    wb = openpyxl.Workbook()
+    expert_group_sheet(wb,expert_group_name)
+    expert_card_sheets(wb)
+    wb.save("{}.xlsx".format(expert_group_name))
+
+def expert_group_sheet(wb,expert_group_name):
+    ws = wb.active
+    ws.title = expert_group_name
+    titles = ["Порядковый номер", "Фамилия И.О.", "Регион", "Город", "Код ГРНТИ1", "Код ГРНТИ2"]
+    for row in ws.iter_rows(min_row=1, max_col=6, max_row=1):
+        i = 0
+        for cell in row:
+            cell.font = openpyxl.styles.Font(bold=True)
+            cell.value = titles[i]
+            i += 1
+    con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    cur.execute("SELECT kod, name, region, city, grnti1, grnti2 FROM Expert_group")
+    res = cur.fetchall()
+    cur.close()
+    con.close()
+    i = 1
+    for row in res:
+        i += 1
+        j = 1
+        for col in row:
+            cell = ws.cell(row=i, column=j)
+            if j == 1:
+                cell.value = i - 1
+            else:
+                cell.value = col
+            j += 1
+    adjust_column_width(ws)
+
+def expert_card_sheets(wb):
+    con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    cur.execute("SELECT kod, name, region, city, grnti1, grnti2, key_words, take_part, input_date FROM Expert_group")
+    res = cur.fetchall()
+    cur.close()
+    con.close()
+    for row in res:
+        ws=wb.create_sheet(str(row[1]))
+        titles = ["Код", "ФИО", "Регион", "Город", "Код ГРНТИ1", "Код ГРНТИ2", "Ключевые слова", "Число участий", "Дата ввода"]
+        for rows in ws.iter_rows(min_row=1, max_col=9, max_row=1):
+            i = 0
+            for cell in rows:
+                cell.font = openpyxl.styles.Font(bold=True)
+                cell.value = titles[i]
+                i += 1
+        j = 1
+        for col in row:
+            cell = ws.cell(row=2, column=j)
+            cell.value = col
+            j += 1
+        adjust_column_width(ws)
+def adjust_column_width(ws):
+    for col in ws.columns:
+        max_length = 0
+        column = col[0].column_letter  # Get the column name
+        for cell in col:
+            try:  # Necessary to avoid error on empty cells
+                if len(str(cell.value)) > max_length:
+                    max_length = len(str(cell.value))
+            except:
+                pass
+        adjusted_width = (max_length + 2) * 1.2
+        ws.column_dimensions[column].width = adjusted_width
+
 #---Переходы между окнами
 
 def open_show_window():
