@@ -15,6 +15,7 @@ Form_show, Window_show = uic.loadUiType("show_form.ui")
 Form_confirm_deleting, Window_confirm_deleting = uic.loadUiType("confirm_deleting_form.ui")
 Form_edit_row, Window_edit_row = uic.loadUiType("edit_row_form.ui")
 Form_include_eg, Window_include_eg=uic.loadUiType("include_eg_form.ui")
+Form_add_to_eg, Window_add_to_eg=uic.loadUiType("add_to_eg_form.ui")
 
 database_name = "bd_var5.db"
 
@@ -25,7 +26,7 @@ def connect_db(database_name):
         print("Database Error: %s" % con.lastError().databaseText())
         sys.exit(1)
     print("Connection succeeded")
-    con.close()
+    #con.close()
 
 #---Отображение таблиц
 
@@ -308,6 +309,7 @@ def get_input_data():
             #window_main.show()
     else:
         msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon('icon.png'))
         msg.setIcon(QMessageBox.Icon.Critical)
         msg.setWindowTitle("Ошибка")
         msg.setText("Неверный ввод данных")
@@ -325,6 +327,7 @@ def insert_into_db(values):
 
 def confirm_deletion():
     msg = QMessageBox()
+    msg.setWindowIcon(QtGui.QIcon('icon.png'))
     msg.setIcon(QMessageBox.Icon.Question)
     msg.setWindowTitle("Подтверждение действия")
     msg.setText("Вы действительно хотите удалить выбранные строки?")
@@ -380,8 +383,8 @@ def get_selected_kod():
     indexes = form_edit.databaseEditTableView.selectionModel().selectedRows()
     for index in indexes:
         row = index.row()
-        selected_rows = [proxy_model_input_date.index(row, col).data()
-                            for col in range(proxy_model_input_date.columnCount())]
+        selected_rows = [proxy_model_key_words.index(row, col).data()
+                            for col in range(proxy_model_key_words.columnCount())]
         rows_selected_kod.append(selected_rows[0])
 
     print(rows_selected_kod)
@@ -393,8 +396,8 @@ def get_selected():
     indexes = form_edit.databaseEditTableView.selectionModel().selectedRows()
     for index in indexes:
         row = index.row()
-        selected_rows = [proxy_model_input_date.index(row, col).data()
-                            for col in range(proxy_model_input_date.columnCount())]
+        selected_rows = [proxy_model_key_words.index(row, col).data()
+                            for col in range(proxy_model_key_words.columnCount())]
     return selected_rows
 
 def populate_edit_form():
@@ -440,6 +443,7 @@ def edit_row():
         window_edit.show()
     else:
         msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon('icon.png'))
         msg.setIcon(QMessageBox.Icon.Critical)
         msg.setWindowTitle("Ошибка")
         msg.setText("Неверный ввод данных")
@@ -457,27 +461,94 @@ def delete_selected():
 
 #---Экспертная группа
 
+def get_table_names(database_name):
+    data = []
+    con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    data = cur.execute("SELECT name FROM sqlite_schema").fetchall()
+    con.commit()
+    cur.close()
+    con.close()
+    return data
+
+def populate_eg_names_combobox():
+    form_add_to_eg.existingExpertGroupNamesComboBox.clear()
+    list = []
+    data = get_table_names(database_name)[4:]
+    for x in data:
+        list.append(str(x)[2:-3])
+    form_add_to_eg.existingExpertGroupNamesComboBox.addItems(sorted(list))
+
+def populate_eg_names_to_confirm_combobox():
+    form_include_eg.expertGroupComboBox.clear()
+    list = []
+    data = get_table_names(database_name)[4:]
+    for x in data:
+        list.append(str(x)[2:-3])
+    form_include_eg.expertGroupComboBox.addItems(sorted(list))
+
+def new_group_radio():
+    form_add_to_eg.expertGroupNameLineEdit.setEnabled(True)
+    form_add_to_eg.existingExpertGroupNamesComboBox.setEnabled(False)
+
+def select_group_radio():
+    form_add_to_eg.expertGroupNameLineEdit.setEnabled(False)
+    form_add_to_eg.existingExpertGroupNamesComboBox.setEnabled(True)
+
+def get_expert_group_name():
+    if (form_add_to_eg.newGroupRadioButton.isChecked() and form_add_to_eg.expertGroupNameLineEdit.text()):
+        return ["N", str(form_add_to_eg.expertGroupNameLineEdit.text()).strip()]
+    if (form_add_to_eg.selectGroupRadioButton.isChecked() and form_add_to_eg.existingExpertGroupNamesComboBox.currentText()):
+        return ["E", str(form_add_to_eg.existingExpertGroupNamesComboBox.currentText()).strip()]
+    else:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon('icon.png'))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText("Неверный ввод данных")
+        msg.exec()
+        return False
+
 def include_in_eg():
     rows_selected_kod=get_selected_kod()
-    for kod in rows_selected_kod:
+    expert_group_name=get_expert_group_name()
+    print(expert_group_name)
+    if expert_group_name[0]=="N":
         query = QSqlQuery()
-        query.prepare("UPDATE Expert_final SET status = 'На рассмотрении' WHERE kod=?")
-        query.bindValue(0, kod)
+        query.prepare("""CREATE TABLE '{}' AS SELECT * FROM Expert_final WHERE 0""".format(expert_group_name[1]))
         query.exec()
-        query.prepare("INSERT INTO Expert_group SELECT * FROM Expert_final WHERE kod=?")
-        query.bindValue(0, kod)
-        query.exec()
-    table_model.select()
-    load_all_data()
-    delete_duplicates_in_eg()
-    table_model_eg.select()
-    form_include_eg.expertGroupTableView.resizeColumnsToContents()
+        #print(query.lastError().text())
+        for kod in rows_selected_kod:
+            query = QSqlQuery()
+            query.prepare("""UPDATE Expert_final SET status = 'На рассмотрении' WHERE kod='{}'""".format(kod))
+            query.exec()
+            query.prepare("""INSERT INTO '{}' SELECT * FROM Expert_final WHERE kod='{}'""".format(expert_group_name[1],kod))
+            query.exec()
+        table_model.select()
+        load_all_data()
+        delete_duplicates_in_eg(expert_group_name[1])
+        table_model_eg.select()
+        form_include_eg.expertGroupTableView.resizeColumnsToContents()
+    if expert_group_name[0]=="E":
+        for kod in rows_selected_kod:
+            query = QSqlQuery()
+            query.prepare("""UPDATE Expert_final SET status = 'На рассмотрении' WHERE kod='{}'""".format(kod))
+            query.exec()
+            query.prepare("""INSERT INTO '{}' SELECT * FROM Expert_final WHERE kod='{}'""".format(expert_group_name[1], kod))
+            query.exec()
+        table_model.select()
+        load_all_data()
+        delete_duplicates_in_eg(expert_group_name[1])
+        table_model_eg.select()
+        form_include_eg.expertGroupTableView.resizeColumnsToContents()
+    form_add_to_eg.expertGroupNameLineEdit.clear()
 
-def delete_duplicates_in_eg():
-    query = QSqlQuery("DELETE FROM Expert_group WHERE rowid NOT IN (SELECT MIN(rowid) FROM Expert_group GROUP BY kod)")
+def delete_duplicates_in_eg(expert_group_name):
+    query = QSqlQuery("DELETE FROM '{}' WHERE rowid NOT IN (SELECT MIN(rowid) FROM '{}' GROUP BY kod)".format(expert_group_name,expert_group_name))
     query.exec()
 
 def delete_selected_eg():
+    expert_group_name=form_include_eg.expertGroupComboBox.currentText()
     rows_selected_kod=[]
     indexes = form_include_eg.expertGroupTableView.selectionModel().selectedRows()
     for index in indexes:
@@ -487,18 +558,43 @@ def delete_selected_eg():
         query.prepare("UPDATE Expert_final SET status = 'Не состоит' WHERE kod=?")
         query.bindValue(0, kod)
         query.exec()
-        query.prepare("DELETE FROM Expert_group WHERE kod=?")
+        query.prepare("DELETE FROM '{}' WHERE kod=?".format(expert_group_name))
         query.bindValue(0, kod)
         query.exec()
     table_model_eg.select()
     table_model.select()
     load_all_data()
 
+def update_table_model_eg():
+    table=form_include_eg.expertGroupComboBox.currentText()
+    table_model_eg.setTable(table)
+    table_model_eg.select()
+    table_model_eg.setHeaderData(0, Qt.Orientation.Horizontal, "Код")
+    table_model_eg.setHeaderData(1, Qt.Orientation.Horizontal, "ФИО")
+    table_model_eg.setHeaderData(2, Qt.Orientation.Horizontal, "Регион")
+    table_model_eg.setHeaderData(3, Qt.Orientation.Horizontal, "Город")
+    table_model_eg.setHeaderData(4, Qt.Orientation.Horizontal, "ГРНТИ1")
+    table_model_eg.setHeaderData(5, Qt.Orientation.Horizontal, "ГРНТИ2")
+    table_model_eg.setHeaderData(7, Qt.Orientation.Horizontal, "Участия")
+    table_model_eg.setHeaderData(8, Qt.Orientation.Horizontal, "Дата ввода")
+    table_model_eg.setHeaderData(10, Qt.Orientation.Horizontal, "Статус в ЭГ")
+    form_include_eg.expertGroupTableView.setModel(table_model_eg)
+    form_include_eg.expertGroupTableView.setSortingEnabled(True)
+    form_include_eg.expertGroupTableView.sortByColumn(0, Qt.SortOrder.AscendingOrder)
+    form_include_eg.expertGroupTableView.resizeColumnsToContents()
+    form_include_eg.expertGroupTableView.verticalHeader().setVisible(False)
+    form_include_eg.expertGroupTableView.hideColumn(6)
+    form_include_eg.expertGroupTableView.hideColumn(9)
+    form_include_eg.expertGroupTableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+    form_include_eg.expertGroupTableView.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+    form_include_eg.removeExpertButton.clicked.connect(delete_selected_eg)
+
 def confirm_eg():
+    expert_group_name = form_include_eg.expertGroupComboBox.currentText()
     kod_list=[]
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    res = cur.execute("SELECT kod FROM Expert_group").fetchall()
+    res = cur.execute("SELECT kod FROM '{}'".format(expert_group_name)).fetchall()
     con.commit()
     cur.close()
     con.close()
@@ -514,29 +610,24 @@ def confirm_eg():
             con.commit()
             cur.close()
             con.close()
-        expert_group_name=str(form_include_eg.expertGroupNameEdit.text()).strip()
+        #expert_group_name=str(form_include_eg.expertGroupNameEdit.text()).strip()
         if expert_group_name:
             export_to_xlsx(expert_group_name)
             con = sqlite3.connect(database_name)
             cur = con.cursor()
-            res = cur.execute("DELETE FROM Expert_group")
+            res = cur.execute("DROP TABLE '{}'".format(expert_group_name))
             con.commit()
             cur.close()
             con.close()
-        else:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Icon.Critical)
-            msg.setWindowTitle("Ошибка")
-            msg.setText("Некорректное название")
-            msg.exec()
         table_model_eg.select()
         table_model.select()
         load_all_data()
-        form_include_eg.expertGroupNameEdit.clear()
+        #form_include_eg.expertGroupNameEdit.clear()
+
 def export_to_xlsx(expert_group_name):
     wb = openpyxl.Workbook()
     expert_group_sheet(wb,expert_group_name)
-    expert_card_sheets(wb)
+    expert_card_sheets(wb,expert_group_name)
     wb.save("{}.xlsx".format(expert_group_name))
 
 def expert_group_sheet(wb,expert_group_name):
@@ -551,7 +642,7 @@ def expert_group_sheet(wb,expert_group_name):
             i += 1
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    cur.execute("SELECT kod, name, region, city, grnti1, grnti2 FROM Expert_group")
+    cur.execute("SELECT kod, name, region, city, grnti1, grnti2 FROM '{}'".format(expert_group_name))
     res = cur.fetchall()
     cur.close()
     con.close()
@@ -568,10 +659,10 @@ def expert_group_sheet(wb,expert_group_name):
             j += 1
     adjust_column_width(ws)
 
-def expert_card_sheets(wb):
+def expert_card_sheets(wb,expert_group_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    cur.execute("SELECT kod, name, region, city, grnti1, grnti2, key_words, take_part, input_date FROM Expert_group")
+    cur.execute("SELECT kod, name, region, city, grnti1, grnti2, key_words, take_part, input_date FROM '{}'".format(expert_group_name))
     res = cur.fetchall()
     cur.close()
     con.close()
@@ -642,10 +733,15 @@ def return_to_edit_from_row():
     window_edit.show()
 
 def open_include_window():
+    populate_eg_names_to_confirm_combobox()
     window_include_eg.show()
 
 def return_to_edit_from_confirm_eg():
     window_include_eg.close()
+
+def open_add_to_eg_window():
+    populate_eg_names_combobox()
+    window_add_to_eg.show()
 
 def exit_main():
     app.closeAllWindows()
@@ -792,6 +888,15 @@ form_edit_row.setupUi(window_edit_row)
 window_edit_row.setWindowIcon(QtGui.QIcon('icon.png'))
 window_edit_row.setWindowTitle("Редактирование информации")
 
+window_add_to_eg=Window_add_to_eg()
+form_add_to_eg=Form_add_to_eg()
+form_add_to_eg.setupUi(window_add_to_eg)
+window_add_to_eg.setWindowIcon(QtGui.QIcon('icon.png'))
+window_add_to_eg.setWindowTitle("Добавление эксперта в группу")
+form_add_to_eg.buttonBox.addButton("Отмена", QDialogButtonBox.ButtonRole.RejectRole)
+form_add_to_eg.existingExpertGroupNamesComboBox.setEnabled(False)
+form_add_to_eg.newGroupRadioButton.toggled.connect(new_group_radio)
+form_add_to_eg.selectGroupRadioButton.toggled.connect(select_group_radio)
 window_include_eg=Window_include_eg()
 form_include_eg=Form_include_eg()
 form_include_eg.setupUi(window_include_eg)
@@ -806,6 +911,7 @@ form_edit_row.cancelButton.clicked.connect(return_to_edit_from_row)
 form_edit.deleteDataButton.clicked.connect(confirm_deletion)
 form_edit.returnToMainButton.clicked.connect(return_to_main_from_edit)
 #form_edit.addExpertGroupButton.setEnabled(False)
+#form_edit.databaseEditTableView.pressed.connect(lambda: print('a'))
 
 
 #form_confirm_deleting.confirmDeletingButton.clicked.connect(return_to_edit_from_confirm)
@@ -813,31 +919,14 @@ form_edit.returnToMainButton.clicked.connect(return_to_main_from_edit)
 
 form_include_eg.returnToEditButton.clicked.connect(return_to_edit_from_confirm_eg)
 table_model_eg = QSqlTableModel()
-table_model_eg.setTable("Expert_group")
-table_model_eg.select()
-table_model_eg.setHeaderData(0,Qt.Orientation.Horizontal,"Код")
-table_model_eg.setHeaderData(1,Qt.Orientation.Horizontal,"ФИО")
-table_model_eg.setHeaderData(2,Qt.Orientation.Horizontal,"Регион")
-table_model_eg.setHeaderData(3,Qt.Orientation.Horizontal,"Город")
-table_model_eg.setHeaderData(4,Qt.Orientation.Horizontal,"ГРНТИ1")
-table_model_eg.setHeaderData(5,Qt.Orientation.Horizontal,"ГРНТИ2")
-table_model_eg.setHeaderData(7,Qt.Orientation.Horizontal,"Участия")
-table_model_eg.setHeaderData(8,Qt.Orientation.Horizontal,"Дата ввода")
-table_model_eg.setHeaderData(10,Qt.Orientation.Horizontal,"Статус в ЭГ")
-form_include_eg.expertGroupTableView.setModel(table_model_eg)
-form_include_eg.expertGroupTableView.setSortingEnabled(True)
-form_include_eg.expertGroupTableView.sortByColumn(0,Qt.SortOrder.AscendingOrder)
-form_include_eg.expertGroupTableView.resizeColumnsToContents()
-form_include_eg.expertGroupTableView.verticalHeader().setVisible(False)
-form_include_eg.expertGroupTableView.hideColumn(6)
-form_include_eg.expertGroupTableView.hideColumn(9)
-form_include_eg.expertGroupTableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-form_include_eg.expertGroupTableView.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
-form_include_eg.removeExpertButton.clicked.connect(delete_selected_eg)
+form_include_eg.expertGroupComboBox.currentTextChanged.connect(update_table_model_eg)
+
 form_include_eg.confirmExpertGroupButton.clicked.connect(confirm_eg)
 
 form_edit.confirmExpertGroupButton.clicked.connect(open_include_window)
-form_edit.addExpertToGroupButton.clicked.connect(include_in_eg)
+form_edit.addExpertToGroupButton.clicked.connect(open_add_to_eg_window)
+form_add_to_eg.buttonBox.accepted.connect(include_in_eg)
+#form_edit.addExpertToGroupButton.clicked.connect(include_in_eg)
 
 window_main.show()
 app.exec()
