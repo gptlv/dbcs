@@ -266,11 +266,11 @@
   ('http.client',
    'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\http\\client.py',
    'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\stringprep.py',
-   'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\stringprep.py',
    'PYMODULE'),
   ('PyQt6.uic',
    'D:\\Ed\\7 '
@@ -403,6 +403,701 @@
    'PYMODULE'),
   ('datetime',
    'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\datetime.py',
+   'PYMODULE'),
+  ('openpyxl',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl._constants',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\_constants.py',
+   'PYMODULE'),
+  ('openpyxl.reader.excel',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\reader\\excel.py',
+   'PYMODULE'),
+  ('openpyxl.reader',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\reader\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.reader.drawings',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\reader\\drawings.py',
+   'PYMODULE'),
+  ('openpyxl.chart.reader',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\reader.py',
+   'PYMODULE'),
+  ('openpyxl.chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.chart.reference',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\reference.py',
+   'PYMODULE'),
+  ('openpyxl.utils',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.utils.formulas',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\formulas.py',
+   'PYMODULE'),
+  ('openpyxl.utils.cell',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\cell.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.worksheet',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\worksheet.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.scenario',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\scenario.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.pagebreak',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\pagebreak.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.properties',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\properties.py',
+   'PYMODULE'),
+  ('openpyxl.styles.colors',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\colors.py',
+   'PYMODULE'),
+  ('openpyxl.styles',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.styles.named_styles',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\named_styles.py',
+   'PYMODULE'),
+  ('openpyxl.styles.cell_style',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\cell_style.py',
+   'PYMODULE'),
+  ('openpyxl.utils.indexed_list',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\indexed_list.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors.excel',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\excel.py',
+   'PYMODULE'),
+  ('openpyxl.styles.protection',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\protection.py',
+   'PYMODULE'),
+  ('openpyxl.styles.numbers',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\numbers.py',
+   'PYMODULE'),
+  ('openpyxl.styles.fonts',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\fonts.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors.nested',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\nested.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors.base',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\base.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors.namespace',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\namespace.py',
+   'PYMODULE'),
+  ('openpyxl.utils.datetime',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\datetime.py',
+   'PYMODULE'),
+  ('openpyxl.styles.fills',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\fills.py',
+   'PYMODULE'),
+  ('__future__',
+   'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\__future__.py',
+   'PYMODULE'),
+  ('openpyxl.styles.borders',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\borders.py',
+   'PYMODULE'),
+  ('openpyxl.styles.alignment',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\alignment.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors.sequence',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\sequence.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.merge',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\merge.py',
+   'PYMODULE'),
+  ('openpyxl.cell.cell',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\cell\\cell.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.hyperlink',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\hyperlink.py',
+   'PYMODULE'),
+  ('openpyxl.styles.styleable',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\styleable.py',
+   'PYMODULE'),
+  ('openpyxl.styles.builtins',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\builtins.py',
+   'PYMODULE'),
+  ('openpyxl.styles.proxy',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\proxy.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.cell_range',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\cell_range.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.views',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\views.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.filters',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\filters.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.protection',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\protection.py',
+   'PYMODULE'),
+  ('openpyxl.utils.protection',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\protection.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.dimensions',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\dimensions.py',
+   'PYMODULE'),
+  ('openpyxl.utils.bound_dictionary',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\bound_dictionary.py',
+   'PYMODULE'),
+  ('openpyxl.utils.units',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\units.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.page',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\page.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.datavalidation',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\datavalidation.py',
+   'PYMODULE'),
+  ('openpyxl.formula.translate',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\formula\\translate.py',
+   'PYMODULE'),
+  ('openpyxl.formula',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\formula\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.formula.tokenizer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\formula\\tokenizer.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.defined_name',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\defined_name.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.child',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\child.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.header_footer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\header_footer.py',
+   'PYMODULE'),
+  ('openpyxl.utils.escape',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\escape.py',
+   'PYMODULE'),
+  ('openpyxl.formatting.formatting',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\formatting\\formatting.py',
+   'PYMODULE'),
+  ('openpyxl.formatting',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\formatting\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.formatting.rule',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\formatting\\rule.py',
+   'PYMODULE'),
+  ('openpyxl.styles.differential',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\differential.py',
+   'PYMODULE'),
+  ('openpyxl.compat',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\compat\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.compat.strings',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\compat\\strings.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.descriptors.serialisable',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\descriptors\\serialisable.py',
+   'PYMODULE'),
+  ('openpyxl.chart.series_factory',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\series_factory.py',
+   'PYMODULE'),
+  ('openpyxl.chart.series',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\series.py',
+   'PYMODULE'),
+  ('openpyxl.chart.trendline',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\trendline.py',
+   'PYMODULE'),
+  ('openpyxl.chart.layout',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\layout.py',
+   'PYMODULE'),
+  ('openpyxl.chart.text',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\text.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.text',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\text.py',
+   'PYMODULE'),
+  ('openpyxl.drawing',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.drawing',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\drawing.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.geometry',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\geometry.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.line',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\line.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.fill',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\fill.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.effect',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\effect.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.colors',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\colors.py',
+   'PYMODULE'),
+  ('openpyxl.chart.marker',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\marker.py',
+   'PYMODULE'),
+  ('openpyxl.chart.picture',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\picture.py',
+   'PYMODULE'),
+  ('openpyxl.chart.label',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\label.py',
+   'PYMODULE'),
+  ('openpyxl.chart.error_bar',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\error_bar.py',
+   'PYMODULE'),
+  ('openpyxl.chart.shapes',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\shapes.py',
+   'PYMODULE'),
+  ('openpyxl.chart.data_source',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\data_source.py',
+   'PYMODULE'),
+  ('openpyxl.chart.surface_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\surface_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.axis',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\axis.py',
+   'PYMODULE'),
+  ('openpyxl.chart.title',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\title.py',
+   'PYMODULE'),
+  ('openpyxl.chart.descriptors',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\descriptors.py',
+   'PYMODULE'),
+  ('openpyxl.chart._3d',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\_3d.py',
+   'PYMODULE'),
+  ('openpyxl.chart._chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.legend',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\legend.py',
+   'PYMODULE'),
+  ('openpyxl.chart.stock_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\stock_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.updown_bars',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\updown_bars.py',
+   'PYMODULE'),
+  ('openpyxl.chart.scatter_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\scatter_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.radar_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\radar_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.pie_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\pie_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.line_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\line_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.bubble_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\bubble_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.bar_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\bar_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.area_chart',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\area_chart.py',
+   'PYMODULE'),
+  ('openpyxl.chart.chartspace',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\chartspace.py',
+   'PYMODULE'),
+  ('openpyxl.chart.print_settings',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\print_settings.py',
+   'PYMODULE'),
+  ('openpyxl.chart.pivot',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\pivot.py',
+   'PYMODULE'),
+  ('openpyxl.chart.plotarea',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chart\\plotarea.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.image',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\image.py',
+   'PYMODULE'),
+  ('openpyxl.xml.functions',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\xml\\functions.py',
+   'PYMODULE'),
+  ('et_xmlfile.xmlfile',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\et_xmlfile\\xmlfile.py',
+   'PYMODULE'),
+  ('et_xmlfile',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\et_xmlfile\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.spreadsheet_drawing',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\spreadsheet_drawing.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.relation',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\relation.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.picture',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\picture.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.properties',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\properties.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.graphic',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\graphic.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.connector',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\connector.py',
+   'PYMODULE'),
+  ('openpyxl.drawing.xdr',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\drawing\\xdr.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.table',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\table.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.related',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\related.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.chartsheet',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\chartsheet.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.publish',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\publish.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.custom',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\custom.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.views',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\views.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.protection',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\protection.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.properties',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\properties.py',
+   'PYMODULE'),
+  ('openpyxl.chartsheet.relation',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\chartsheet\\relation.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.drawing',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\drawing.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet._reader',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\_reader.py',
+   'PYMODULE'),
+  ('openpyxl.cell.text',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\cell\\text.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet._read_only',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\_read_only.py',
+   'PYMODULE'),
+  ('openpyxl.cell.read_only',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\cell\\read_only.py',
+   'PYMODULE'),
+  ('openpyxl.packaging.relationship',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\packaging\\relationship.py',
+   'PYMODULE'),
+  ('openpyxl.packaging',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.packaging.manifest',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\packaging\\manifest.py',
+   'PYMODULE'),
+  ('openpyxl.packaging.core',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\packaging\\core.py',
+   'PYMODULE'),
+  ('openpyxl.styles.stylesheet',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\stylesheet.py',
+   'PYMODULE'),
+  ('openpyxl.styles.table',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\styles\\table.py',
+   'PYMODULE'),
+  ('openpyxl.reader.workbook',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\reader\\workbook.py',
+   'PYMODULE'),
+  ('openpyxl.pivot.record',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\pivot\\record.py',
+   'PYMODULE'),
+  ('openpyxl.pivot',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\pivot\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.pivot.fields',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\pivot\\fields.py',
+   'PYMODULE'),
+  ('openpyxl.pivot.cache',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\pivot\\cache.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.external_link.external',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\external_link\\external.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.external_link',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\external_link\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.packaging.workbook',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\packaging\\workbook.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.web',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\web.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.views',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\views.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.smart_tags',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\smart_tags.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.protection',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\protection.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.properties',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\properties.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.function_group',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\function_group.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.external_reference',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\external_reference.py',
+   'PYMODULE'),
+  ('openpyxl.reader.strings',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\reader\\strings.py',
+   'PYMODULE'),
+  ('openpyxl.comments.comment_sheet',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\comments\\comment_sheet.py',
+   'PYMODULE'),
+  ('openpyxl.comments',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\comments\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.comments.shape_writer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\comments\\shape_writer.py',
+   'PYMODULE'),
+  ('openpyxl.comments.comments',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\comments\\comments.py',
+   'PYMODULE'),
+  ('openpyxl.comments.author',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\comments\\author.py',
+   'PYMODULE'),
+  ('openpyxl.cell',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\cell\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.xml.constants',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\xml\\constants.py',
+   'PYMODULE'),
+  ('openpyxl.utils.exceptions',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\utils\\exceptions.py',
+   'PYMODULE'),
+  ('openpyxl.pivot.table',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\pivot\\table.py',
+   'PYMODULE'),
+  ('openpyxl.workbook',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.workbook.workbook',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\workbook.py',
+   'PYMODULE'),
+  ('openpyxl.writer.excel',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\writer\\excel.py',
+   'PYMODULE'),
+  ('openpyxl.writer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\writer\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.writer.theme',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\writer\\theme.py',
+   'PYMODULE'),
+  ('openpyxl.workbook._writer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\workbook\\_writer.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet._writer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\_writer.py',
+   'PYMODULE'),
+  ('openpyxl.cell._writer',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\cell\\_writer.py',
+   'PYMODULE'),
+  ('openpyxl.packaging.extended',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\packaging\\extended.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet.copier',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\copier.py',
+   'PYMODULE'),
+  ('openpyxl.worksheet._write_only',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\worksheet\\_write_only.py',
+   'PYMODULE'),
+  ('openpyxl.xml',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\xml\\__init__.py',
+   'PYMODULE'),
+  ('openpyxl.compat.numbers',
+   'D:\\Ed\\7 '
+   'sem\\BD\\db_proj\\venv\\lib\\site-packages\\openpyxl\\compat\\numbers.py',
    'PYMODULE'),
   ('sqlite3',
    'C:\\Users\\grish\\AppData\\Local\\Programs\\Python\\Python39\\lib\\sqlite3\\__init__.py',

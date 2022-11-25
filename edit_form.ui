@@ -36,6 +36,12 @@
       <height>821</height>
      </rect>
     </property>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>false</bool>
+    </attribute>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -165,7 +171,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>260</y>
       <width>321</width>
       <height>20</height>
      </rect>
@@ -191,7 +197,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>350</y>
+      <y>340</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -204,7 +210,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>430</y>
+      <y>470</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -217,7 +223,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>490</y>
+      <y>530</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -230,7 +236,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>290</y>
+      <y>280</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -243,7 +249,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
+      <y>390</y>
       <width>321</width>
       <height>20</height>
      </rect>
@@ -364,6 +370,19 @@
     </property>
     <property name="text">
      <string>CheckBox</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exportExpertDataButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Выгрузить данные об эксперте</string>
     </property>
    </widget>
   </widget>

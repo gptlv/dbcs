@@ -392,7 +392,7 @@ def get_selected_kod():
     #selected_rows.clear()
     return rows_selected_kod
 
-def get_selected():
+def get_selected_data():
     indexes = form_edit.databaseEditTableView.selectionModel().selectedRows()
     for index in indexes:
         row = index.row()
@@ -401,7 +401,7 @@ def get_selected():
     return selected_rows
 
 def populate_edit_form():
-    data = get_selected()
+    data = get_selected_data()
     form_edit_row.kodRowEdit.setText(str(data[0]))
     form_edit_row.kodRowEdit.setEnabled(False)
     form_edit_row.nameRowEdit.setText(str(data[1]))
@@ -461,6 +461,46 @@ def delete_selected():
 
 #---Экспертная группа
 
+def export_expert_data():
+    thin_border = openpyxl.styles.borders.Border(
+        left=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        right=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        top=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        bottom=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'))
+    wb = openpyxl.Workbook()
+    kod=get_selected_kod()[0]
+    con = sqlite3.connect(database_name)
+    cur = con.cursor()
+    cur.execute("SELECT kod, name, region, city, grnti1, grnti2, key_words, take_part, input_date FROM Expert_final WHERE kod = '{}'".format(
+        kod))
+    res = cur.fetchall()
+    cur.close()
+    con.close()
+    print(res)
+    for row in res:
+        ws = wb.active
+        ws.set_printer_settings(9, 'landscape')
+        #ws.page_setup.paperHeight = '210mm'
+        #ws.page_setup.paperWidth = '297mm'
+        ws.title = str(row[1])
+        titles = ["Код", "ФИО", "Регион", "Город", "ГРНТИ1", "ГРНТИ2", "Ключевые слова", "ЧУ",
+                  "Дата ввода"]
+        for rows in ws.iter_rows(min_row=1, max_col=9, max_row=1):
+            i = 0
+            for cell in rows:
+                cell.font = openpyxl.styles.Font(name='Arial', size=10, bold=True)
+                cell.value = titles[i]
+                cell.border = thin_border
+                i += 1
+        j = 1
+        for col in row:
+            cell = ws.cell(row=2, column=j)
+            cell.font = openpyxl.styles.Font(name='Arial', size=10)
+            cell.value = col
+            cell.border = thin_border
+            j += 1
+    adjust_card_column_width(ws)
+    wb.save("{}.xlsx".format(res[0][1]))
 def get_table_names(database_name):
     data = []
     con = sqlite3.connect(database_name)
@@ -513,7 +553,7 @@ def include_in_eg():
     rows_selected_kod=get_selected_kod()
     expert_group_name=get_expert_group_name()
     print(expert_group_name)
-    if expert_group_name[0]=="N":
+    if expert_group_name and expert_group_name[0]=="N":
         query = QSqlQuery()
         query.prepare("""CREATE TABLE '{}' AS SELECT * FROM Expert_final WHERE 0""".format(expert_group_name[1]))
         query.exec()
@@ -529,7 +569,7 @@ def include_in_eg():
         delete_duplicates_in_eg(expert_group_name[1])
         table_model_eg.select()
         form_include_eg.expertGroupTableView.resizeColumnsToContents()
-    if expert_group_name[0]=="E":
+    if expert_group_name and expert_group_name[0]=="E":
         for kod in rows_selected_kod:
             query = QSqlQuery()
             query.prepare("""UPDATE Expert_final SET status = 'На рассмотрении' WHERE kod='{}'""".format(kod))
@@ -631,14 +671,21 @@ def export_to_xlsx(expert_group_name):
     wb.save("{}.xlsx".format(expert_group_name))
 
 def expert_group_sheet(wb,expert_group_name):
+    thin_border = openpyxl.styles.borders.Border(
+        left=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        right=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        top=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        bottom=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'))
     ws = wb.active
     ws.title = expert_group_name
-    titles = ["Порядковый номер", "Фамилия И.О.", "Регион", "Город", "Код ГРНТИ1", "Код ГРНТИ2"]
+    ws.set_printer_settings(9, 'landscape')
+    titles = ["№", "ФИО", "Регион", "Город", "ГРНТИ1", "ГРНТИ2"]
     for row in ws.iter_rows(min_row=1, max_col=6, max_row=1):
         i = 0
         for cell in row:
-            cell.font = openpyxl.styles.Font(bold=True)
+            cell.font = openpyxl.styles.Font(name='Arial', size=10, bold=True)
             cell.value = titles[i]
+            cell.border = thin_border
             i += 1
     con = sqlite3.connect(database_name)
     cur = con.cursor()
@@ -652,14 +699,22 @@ def expert_group_sheet(wb,expert_group_name):
         j = 1
         for col in row:
             cell = ws.cell(row=i, column=j)
+            cell.font = openpyxl.styles.Font(name='Arial', size=10)
+            cell.border = thin_border
             if j == 1:
+
                 cell.value = i - 1
             else:
                 cell.value = col
             j += 1
-    adjust_column_width(ws)
+    adjust_group_column_width(ws)
 
 def expert_card_sheets(wb,expert_group_name):
+    thin_border = openpyxl.styles.borders.Border(
+        left=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        right=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        top=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'),
+        bottom=openpyxl.styles.borders.Side(border_style=openpyxl.styles.borders.BORDER_THIN, color='00000000'))
     con = sqlite3.connect(database_name)
     cur = con.cursor()
     cur.execute("SELECT kod, name, region, city, grnti1, grnti2, key_words, take_part, input_date FROM '{}'".format(expert_group_name))
@@ -668,19 +723,23 @@ def expert_card_sheets(wb,expert_group_name):
     con.close()
     for row in res:
         ws=wb.create_sheet(str(row[1]))
-        titles = ["Код", "ФИО", "Регион", "Город", "Код ГРНТИ1", "Код ГРНТИ2", "Ключевые слова", "Число участий", "Дата ввода"]
+        ws.set_printer_settings(9, 'landscape')
+        titles = ["Код", "ФИО", "Регион", "Город", "ГРНТИ1", "ГРНТИ2", "Ключевые слова", "ЧУ", "Дата ввода"]
         for rows in ws.iter_rows(min_row=1, max_col=9, max_row=1):
             i = 0
             for cell in rows:
-                cell.font = openpyxl.styles.Font(bold=True)
+                cell.font = openpyxl.styles.Font(name='Arial', size=10, bold=True)
                 cell.value = titles[i]
+                cell.border = thin_border
                 i += 1
         j = 1
         for col in row:
             cell = ws.cell(row=2, column=j)
+            cell.font = openpyxl.styles.Font(name='Arial', size=10)
             cell.value = col
+            cell.border = thin_border
             j += 1
-        adjust_column_width(ws)
+        adjust_card_column_width(ws)
 def adjust_column_width(ws):
     for col in ws.columns:
         max_length = 0
@@ -693,6 +752,25 @@ def adjust_column_width(ws):
                 pass
         adjusted_width = (max_length + 2) * 1.2
         ws.column_dimensions[column].width = adjusted_width
+
+def adjust_group_column_width(ws):
+    ws.column_dimensions['A'].width = 5
+    ws.column_dimensions['B'].width = 25
+    ws.column_dimensions['C'].width = 25
+    ws.column_dimensions['D'].width = 30
+    ws.column_dimensions['E'].width = 15
+    ws.column_dimensions['F'].width = 15
+def adjust_card_column_width(ws):
+    ws.column_dimensions['A'].width = 5
+    ws.column_dimensions['B'].width = 18
+    ws.column_dimensions['C'].width = 18
+    ws.column_dimensions['D'].width = 21
+    ws.column_dimensions['E'].width = 8
+    ws.column_dimensions['F'].width = 8
+    ws.column_dimensions['G'].width = 35
+    ws['G2'].alignment = openpyxl.styles.Alignment(wrap_text=True)
+    ws.column_dimensions['H'].width = 3
+    ws.column_dimensions['I'].width = 12
 
 #---Переходы между окнами
 
@@ -880,6 +958,7 @@ form_edit.databaseEditTableView.setModel(proxy_model_key_words)
 proxy_model_key_words.setFilterKeyColumn(6)
 form_edit.keyWordsFilterComboBox.currentTextChanged.connect(proxy_model_key_words.setFilterFixedString)
 
+form_edit.exportExpertDataButton.clicked.connect(export_expert_data)
 #form_confirm_deleting.confirmDeletingButton.clicked.connect(delete_selected)
 
 window_edit_row=Window_edit_row()
@@ -927,6 +1006,7 @@ form_edit.confirmExpertGroupButton.clicked.connect(open_include_window)
 form_edit.addExpertToGroupButton.clicked.connect(open_add_to_eg_window)
 form_add_to_eg.buttonBox.accepted.connect(include_in_eg)
 #form_edit.addExpertToGroupButton.clicked.connect(include_in_eg)
+
 
 window_main.show()
 app.exec()
