@@ -26,6 +26,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="placeholderText">
+     <string>0000</string>
+    </property>
    </widget>
    <widget class="QTableView" name="databaseEditTableView">
     <property name="geometry">
@@ -64,6 +67,9 @@
       <width>211</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Иванов И.И.</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -126,6 +132,9 @@
       <width>211</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="placeholderText">
+     <string>ЧЧ.ММ.ГГГГ</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -370,6 +379,9 @@
     </property>
     <property name="text">
      <string>CheckBox</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="exportExpertDataButton">

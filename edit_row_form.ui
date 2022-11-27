@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="regionRowEdit">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>70</y>
-      <width>211</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
@@ -88,16 +78,6 @@
      <rect>
       <x>90</x>
       <y>40</y>
-      <width>211</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="cityRowEdit">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>100</y>
       <width>211</width>
       <height>20</height>
      </rect>
@@ -176,6 +156,26 @@
     </property>
     <property name="text">
      <string>Отмена</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="regionRowComboBox">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>70</y>
+      <width>211</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cityRowComboBox">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>100</y>
+      <width>211</width>
+      <height>20</height>
+     </rect>
     </property>
    </widget>
   </widget>
