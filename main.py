@@ -113,6 +113,7 @@ def get_obl_data(database_name):
     con.close()
     return data
 
+
 def populate_obl_combox():
     obl_list = []
     data = get_obl_data(database_name)
@@ -120,12 +121,15 @@ def populate_obl_combox():
         obl_list.append(str(x)[2:-3])
     form_add.oblComboBox.addItems(sorted(obl_list))
 
+
 def populate_obl_filter_combox():
     obl_list = []
     data = get_obl_data(database_name)
     for x in data:
         obl_list.append(str(x)[2:-3])
     form_edit.oblFilterComboBox.addItems(sorted(obl_list))
+
+
 def get_city_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
@@ -282,6 +286,7 @@ def get_obl_region_dict():
     res_dict = dict(zip(obl_list, region_list))
     return res_dict
 
+
 def get_city_region_dict():
     con = sqlite3.connect(database_name)
     cur = con.cursor()
@@ -296,6 +301,7 @@ def get_city_region_dict():
         city_list.append(data_list[i][1])
     res_dict = dict(zip(city_list, region_list))
     return res_dict
+
 
 def get_city_obl_dict():
     con = sqlite3.connect(database_name)
@@ -312,9 +318,11 @@ def get_city_obl_dict():
     res_dict = dict(zip(city_list, obl_list))
     return res_dict
 
+
 def get_obl(city):
-    city_obl_dict=get_city_obl_dict()
+    city_obl_dict = get_city_obl_dict()
     return city_obl_dict[city]
+
 
 def region_city_check(region, city):
     res_dict = get_city_region_dict()
@@ -392,7 +400,7 @@ def get_input_data():
             input_date,
             grnti_list[2],
             "Не состоит",
-            obl
+            obl,
         ]
         if same_person_check(name, city):
             msg = QMessageBox()
@@ -493,6 +501,7 @@ def update_filter_obl_combo_box_by_region():
         form_edit.oblFilterComboBox.setCurrentIndex(-1)
     form_edit.databaseEditTableView.scrollToTop()
 
+
 def update_filter_city_combo_box_by_region():
     city_region_dict = get_city_region_dict()
     current_region = str(form_edit.regionFilterComboBox.currentText()).strip()
@@ -512,6 +521,7 @@ def update_filter_city_combo_box_by_region():
         form_edit.cityFilterComboBox.setCurrentIndex(-1)
     form_edit.databaseEditTableView.scrollToTop()
 
+
 def update_filter_city_combo_box_by_obl():
     city_obl_dict = get_city_obl_dict()
     current_obl = str(form_edit.oblFilterComboBox.currentText()).strip()
@@ -523,8 +533,8 @@ def update_filter_city_combo_box_by_obl():
     elif not form_edit.cityFilterCheckBox.isChecked():
         form_edit.cityFilterComboBox.setCurrentIndex(-1)
     elif (
-            form_edit.oblFilterCheckBox.isChecked()
-            and form_edit.cityFilterCheckBox.isChecked()
+        form_edit.oblFilterCheckBox.isChecked()
+        and form_edit.cityFilterCheckBox.isChecked()
     ):
         form_edit.cityFilterComboBox.clear()
         form_edit.cityFilterComboBox.addItems(sorted(cities_list))
@@ -541,6 +551,7 @@ def region_check_box():
         form_edit.regionFilterComboBox.setEnabled(False)
         form_edit.regionFilterComboBox.setCurrentIndex(-1)
     form_edit.databaseEditTableView.scrollToTop()
+
 
 def obl_check_box():
     if form_edit.oblFilterCheckBox.isChecked():
@@ -561,12 +572,33 @@ def obl_check_box():
 def city_check_box():
     if form_edit.cityFilterCheckBox.isChecked():
         form_edit.cityFilterComboBox.setEnabled(True)
-        if (not form_edit.regionFilterCheckBox.isChecked() and not form_edit.oblFilterCheckBox.isChecked()) or (not form_edit.regionFilterCheckBox.isChecked() and form_edit.oblFilterCheckBox.isChecked() and form_edit.oblFilterComboBox.currentIndex()==-1):
+        if (
+            not form_edit.regionFilterCheckBox.isChecked()
+            and not form_edit.oblFilterCheckBox.isChecked()
+        ) or (
+            not form_edit.regionFilterCheckBox.isChecked()
+            and form_edit.oblFilterCheckBox.isChecked()
+            and form_edit.oblFilterComboBox.currentIndex() == -1
+        ):
             form_edit.cityFilterComboBox.clear()
             populate_city_filter_combobox()
-        elif (form_edit.regionFilterCheckBox.isChecked() and not form_edit.oblFilterCheckBox.isChecked()) or (form_edit.regionFilterCheckBox.isChecked() and form_edit.oblFilterCheckBox.isChecked() and form_edit.oblFilterComboBox.currentIndex == -1):
+        elif (
+            form_edit.regionFilterCheckBox.isChecked()
+            and not form_edit.oblFilterCheckBox.isChecked()
+        ) or (
+            form_edit.regionFilterCheckBox.isChecked()
+            and form_edit.oblFilterCheckBox.isChecked()
+            and form_edit.oblFilterComboBox.currentIndex == -1
+        ):
             update_filter_city_combo_box_by_region()
-        elif (form_edit.regionFilterCheckBox.isChecked() and not form_edit.oblFilterCheckBox.isChecked()) or (form_edit.regionFilterCheckBox.isChecked() and form_edit.oblFilterCheckBox.isChecked() and not form_edit.oblFilterComboBox.currentIndex == -1):
+        elif (
+            form_edit.regionFilterCheckBox.isChecked()
+            and not form_edit.oblFilterCheckBox.isChecked()
+        ) or (
+            form_edit.regionFilterCheckBox.isChecked()
+            and form_edit.oblFilterCheckBox.isChecked()
+            and not form_edit.oblFilterComboBox.currentIndex == -1
+        ):
             update_filter_city_combo_box_by_obl()
         form_edit.cityFilterComboBox.setCurrentIndex(-1)
     else:
@@ -608,7 +640,7 @@ def get_selected_kod():
         ]
         rows_selected_kod.append(selected_rows[0])
 
-    #print(rows_selected_kod)
+    # print(rows_selected_kod)
     indexes.clear()
     return rows_selected_kod
 
@@ -707,9 +739,9 @@ def edit_row():
             0,
             input_date,
             grnti_list[2],
-            obl
+            obl,
         ]
-        #print(values)
+        # print(values)
         edit_db_row(values)
         window_edit_row.close()
         table_model.select()
@@ -765,7 +797,7 @@ def export_expert_data():
     res = cur.fetchall()
     cur.close()
     con.close()
-    #print(res)
+    # print(res)
     for row in res:
         ws = wb.active
         ws.set_printer_settings(9, "landscape")
@@ -985,7 +1017,7 @@ def confirm_eg():
     con.close()
     for i in range(len(res)):
         kod_list.append(res[i][0])
-    #print(kod_list)
+    # print(kod_list)
     if len(kod_list):
         for kod in kod_list:
             con = sqlite3.connect(database_name)
@@ -1326,8 +1358,12 @@ form_edit.nameFilterEdit.textChanged.connect(
 populate_region_filter_combobx()
 form_edit.regionFilterComboBox.setEnabled(False)
 form_edit.regionFilterComboBox.setCurrentIndex(-1)
-form_edit.regionFilterComboBox.currentTextChanged.connect(update_filter_city_combo_box_by_region)
-form_edit.regionFilterComboBox.currentTextChanged.connect(update_filter_obl_combo_box_by_region)
+form_edit.regionFilterComboBox.currentTextChanged.connect(
+    update_filter_city_combo_box_by_region
+)
+form_edit.regionFilterComboBox.currentTextChanged.connect(
+    update_filter_obl_combo_box_by_region
+)
 form_edit.cityFilterComboBox.currentTextChanged.connect(
     form_edit.databaseEditTableView.scrollToTop
 )
@@ -1358,7 +1394,7 @@ form_edit.cityFilterComboBox.currentTextChanged.connect(
 populate_codrub_filter_combobox()
 form_edit.grntiFilterComboBox.setEnabled(False)
 form_edit.grntiFilterComboBox.setCurrentIndex(-1)
-#form_edit.grntiFilterCheckBox.stateChanged.connect(grnti_check_box)
+# form_edit.grntiFilterCheckBox.stateChanged.connect(grnti_check_box)
 form_edit.grntiFilterRadioButton.toggled.connect(grnti_radio)
 proxy_model_grnti = QSortFilterProxyModel()
 proxy_model_grnti.setSourceModel(proxy_model_city)
@@ -1383,7 +1419,7 @@ form_edit.inputDateFilterEdit.textChanged.connect(
 populate_rubrika_filter_combobox()
 form_edit.keyWordsFilterComboBox.setEnabled(False)
 form_edit.keyWordsFilterComboBox.setCurrentIndex(-1)
-#form_edit.keyWordsFilterCheckBox.stateChanged.connect(key_words_check_box)
+# form_edit.keyWordsFilterCheckBox.stateChanged.connect(key_words_check_box)
 form_edit.keyWordsFilterRadioButton.toggled.connect(key_words_radio)
 proxy_model_key_words = QSortFilterProxyModel()
 proxy_model_key_words.setSourceModel(proxy_model_input_date)
@@ -1397,7 +1433,9 @@ populate_obl_filter_combox()
 form_edit.oblFilterComboBox.setEnabled(False)
 form_edit.oblFilterComboBox.setCurrentIndex(-1)
 form_edit.oblFilterCheckBox.stateChanged.connect(obl_check_box)
-form_edit.oblFilterComboBox.currentTextChanged.connect(update_filter_city_combo_box_by_obl)
+form_edit.oblFilterComboBox.currentTextChanged.connect(
+    update_filter_city_combo_box_by_obl
+)
 proxy_model_obl = QSortFilterProxyModel()
 proxy_model_obl.setSourceModel(proxy_model_key_words)
 form_edit.databaseEditTableView.setModel(proxy_model_obl)
