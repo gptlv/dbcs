@@ -422,8 +422,9 @@ def get_input_data():
                 insert_into_db(values)
                 form_add.nameLineAdd.clear()
                 form_add.grntiLineAdd.clear()
+                table_model.select()
+                load_all_data()
                 window_add.close()
-                window_main.show()
             elif msg.clickedButton() == buttonN:
                 msg.close()
         else:
@@ -687,8 +688,8 @@ def populate_edit_form():
 
 
 def edit_db_row(values):
-    query = QSqlQuery(
-        """UPDATE Expert_final 
+    query = QSqlQuery()
+    query.prepare("""UPDATE Expert_final 
                             SET name = '{}',
                                 region = '{}',
                                 city = '{}',
@@ -698,7 +699,7 @@ def edit_db_row(values):
                                 take_part = '{}',
                                 input_date = '{}',
                                 grnti_search = '{}',
-                                obl = '{}'
+                                oblname = '{}'
                             WHERE kod = {}""".format(
             values[1],
             values[2],
@@ -710,9 +711,8 @@ def edit_db_row(values):
             values[8],
             values[9],
             values[10],
-            values[0],
-        )
-    )
+            values[0]
+        ))
     query.exec()
 
 
@@ -741,7 +741,7 @@ def edit_row():
             grnti_list[2],
             obl,
         ]
-        # print(values)
+        #rint(values)
         edit_db_row(values)
         window_edit_row.close()
         table_model.select()
