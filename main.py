@@ -456,6 +456,11 @@ def insert_into_db(values):
 
 # ---Работа с таблицами
 
+def update_form_edit_buttons():
+    form_edit.deleteDataButton.setEnabled(True)
+    form_edit.exportExpertDataButton.setEnabled(True)
+    form_edit.addExpertToGroupButton.setEnabled(True)
+
 
 def confirm_deletion():
     msg = QMessageBox()
@@ -1289,6 +1294,10 @@ form_edit.setupUi(window_edit)
 window_edit.setWindowIcon(QtGui.QIcon("icon.png"))
 window_edit.setWindowTitle("Работа с таблицами")
 
+form_edit.deleteDataButton.setEnabled(False)
+form_edit.exportExpertDataButton.setEnabled(False)
+form_edit.addExpertToGroupButton.setEnabled(False)
+form_edit.databaseEditTableView.clicked.connect(update_form_edit_buttons)
 form_edit.addDataButton.clicked.connect(open_add_window)
 
 window_add = Window_add()
@@ -1488,6 +1497,7 @@ form_include_eg.confirmExpertGroupButton.clicked.connect(confirm_eg)
 form_edit.confirmExpertGroupButton.clicked.connect(open_include_window)
 form_edit.addExpertToGroupButton.clicked.connect(open_add_to_eg_window)
 form_add_to_eg.buttonBox.accepted.connect(include_in_eg)
+
 
 
 window_main.show()

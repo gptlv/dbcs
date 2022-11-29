@@ -39,7 +39,7 @@
      <number>1</number>
     </attribute>
     <attribute name="horizontalHeaderStretchLastSection">
-     <bool>false</bool>
+     <bool>true</bool>
     </attribute>
     <attribute name="verticalHeaderCascadingSectionResizes">
      <bool>true</bool>
