@@ -456,6 +456,7 @@ def insert_into_db(values):
 
 # ---Работа с таблицами
 
+
 def update_form_edit_buttons():
     form_edit.deleteDataButton.setEnabled(True)
     form_edit.exportExpertDataButton.setEnabled(True)
@@ -694,7 +695,8 @@ def populate_edit_form():
 
 def edit_db_row(values):
     query = QSqlQuery()
-    query.prepare("""UPDATE Expert_final 
+    query.prepare(
+        """UPDATE Expert_final 
                             SET name = '{}',
                                 region = '{}',
                                 city = '{}',
@@ -716,8 +718,9 @@ def edit_db_row(values):
             values[8],
             values[9],
             values[10],
-            values[0]
-        ))
+            values[0],
+        )
+    )
     query.exec()
 
 
@@ -746,7 +749,6 @@ def edit_row():
             grnti_list[2],
             obl,
         ]
-        #rint(values)
         edit_db_row(values)
         window_edit_row.close()
         table_model.select()
@@ -791,50 +793,61 @@ def export_expert_data():
         ),
     )
     wb = openpyxl.Workbook()
-    kod = get_selected_kod()[0]
-    con = sqlite3.connect(database_name)
-    cur = con.cursor()
-    cur.execute(
-        "SELECT kod, name, region, oblname, city, grnti1, grnti2, key_words, take_part, input_date FROM Expert_final WHERE kod = '{}'".format(
-            kod
+    if get_selected_kod():
+        kod = get_selected_kod()[0]
+        con = sqlite3.connect(database_name)
+        cur = con.cursor()
+        cur.execute(
+            """SELECT 
+                        kod, 
+                        name, 
+                        region, 
+                        oblname, 
+                        city, 
+                        grnti1, 
+                        grnti2, 
+                        key_words, 
+                        take_part, 
+                        input_date 
+            FROM Expert_final WHERE kod = '{}'""".format(
+                kod
+            )
         )
-    )
-    res = cur.fetchall()
-    cur.close()
-    con.close()
-    # print(res)
-    for row in res:
-        ws = wb.active
-        ws.set_printer_settings(9, "landscape")
-        ws.title = str(row[1])
-        titles = [
-            "Код",
-            "ФИО",
-            "Регион",
-            "Область",
-            "Город",
-            "ГРНТИ1",
-            "ГРНТИ2",
-            "Ключевые слова",
-            "ЧУ",
-            "Дата ввода",
-        ]
-        for rows in ws.iter_rows(min_row=1, max_col=10, max_row=1):
-            i = 0
-            for cell in rows:
-                cell.font = openpyxl.styles.Font(name="Arial", size=10, bold=True)
-                cell.value = titles[i]
+        res = cur.fetchall()
+        cur.close()
+        con.close()
+        for row in res:
+            ws = wb.active
+            ws.set_printer_settings(9, "landscape")
+            ws.title = str(row[1])
+            titles = [
+                "Код",
+                "ФИО",
+                "Регион",
+                "Область",
+                "Город",
+                "ГРНТИ1",
+                "ГРНТИ2",
+                "Ключевые слова",
+                "ЧУ",
+                "Дата ввода",
+            ]
+            for rows in ws.iter_rows(min_row=1, max_col=10, max_row=1):
+                i = 0
+                for cell in rows:
+                    cell.font = openpyxl.styles.Font(name="Arial", size=10, bold=True)
+                    cell.value = titles[i]
+                    cell.border = thin_border
+                    i += 1
+            j = 1
+            for col in row:
+                cell = ws.cell(row=2, column=j)
+                cell.font = openpyxl.styles.Font(name="Arial", size=10)
+                cell.value = col
                 cell.border = thin_border
-                i += 1
-        j = 1
-        for col in row:
-            cell = ws.cell(row=2, column=j)
-            cell.font = openpyxl.styles.Font(name="Arial", size=10)
-            cell.value = col
-            cell.border = thin_border
-            j += 1
-    adjust_card_column_width(ws)
-    wb.save("{}.xlsx".format(res[0][1]))
+                j += 1
+        adjust_card_column_width(ws)
+        wb.save("{}.xlsx".format(res[0][1]))
 
 
 def get_table_names(database_name):
@@ -863,6 +876,7 @@ def populate_eg_names_to_confirm_combobox():
     for x in data:
         eg_list.append(str(x)[2:-3])
     form_include_eg.expertGroupComboBox.addItems(sorted(eg_list))
+    form_include_eg.expertGroupComboBox.setCurrentIndex(-1)
 
 
 def new_group_radio():
@@ -1013,39 +1027,40 @@ def update_table_model_eg():
 
 def confirm_eg():
     expert_group_name = form_include_eg.expertGroupComboBox.currentText()
-    kod_list = []
-    con = sqlite3.connect(database_name)
-    cur = con.cursor()
-    res = cur.execute("SELECT kod FROM '{}'".format(expert_group_name)).fetchall()
-    con.commit()
-    cur.close()
-    con.close()
-    for i in range(len(res)):
-        kod_list.append(res[i][0])
-    # print(kod_list)
-    if len(kod_list):
-        for kod in kod_list:
-            con = sqlite3.connect(database_name)
-            cur = con.cursor()
-            cur.execute(
-                "UPDATE Expert_final SET take_part = take_part + 1, status = 'Утвержден' WHERE kod = '{}'".format(
-                    kod
-                )
-            ).fetchall()
-            con.commit()
-            cur.close()
-            con.close()
-        if expert_group_name:
-            export_to_xlsx(expert_group_name)
-            con = sqlite3.connect(database_name)
-            cur = con.cursor()
-            cur.execute("DROP TABLE '{}'".format(expert_group_name))
-            con.commit()
-            cur.close()
-            con.close()
-        table_model_eg.select()
-        table_model.select()
-        load_all_data()
+    if expert_group_name:
+        kod_list = []
+        con = sqlite3.connect(database_name)
+        cur = con.cursor()
+        res = cur.execute("SELECT kod FROM '{}'".format(expert_group_name)).fetchall()
+        con.commit()
+        cur.close()
+        con.close()
+        for i in range(len(res)):
+            kod_list.append(res[i][0])
+        # print(kod_list)
+        if len(kod_list):
+            for kod in kod_list:
+                con = sqlite3.connect(database_name)
+                cur = con.cursor()
+                cur.execute(
+                    "UPDATE Expert_final SET take_part = take_part + 1, status = 'Утвержден' WHERE kod = '{}'".format(
+                        kod
+                    )
+                ).fetchall()
+                con.commit()
+                cur.close()
+                con.close()
+            if expert_group_name:
+                export_to_xlsx(expert_group_name)
+                con = sqlite3.connect(database_name)
+                cur = con.cursor()
+                cur.execute("DROP TABLE '{}'".format(expert_group_name))
+                con.commit()
+                cur.close()
+                con.close()
+            table_model_eg.select()
+            table_model.select()
+            load_all_data()
 
 
 def export_to_xlsx(expert_group_name):
@@ -1493,11 +1508,11 @@ table_model_eg = QSqlTableModel()
 form_include_eg.expertGroupComboBox.currentTextChanged.connect(update_table_model_eg)
 
 form_include_eg.confirmExpertGroupButton.clicked.connect(confirm_eg)
+form_include_eg.confirmExpertGroupButton.clicked.connect(populate_eg_names_to_confirm_combobox)
 
 form_edit.confirmExpertGroupButton.clicked.connect(open_include_window)
 form_edit.addExpertToGroupButton.clicked.connect(open_add_to_eg_window)
 form_add_to_eg.buttonBox.accepted.connect(include_in_eg)
-
 
 
 window_main.show()

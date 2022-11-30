@@ -52,7 +52,7 @@
  [],
  False,
  False,
- 1668628906,
+ 1669815620,
  [('run.exe',
    'D:\\Ed\\7 '
    'sem\\BD\\db_proj\\venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
