@@ -721,7 +721,14 @@ def edit_db_row(values):
             values[0],
         )
     )
-    query.exec()
+    res = query.exec()
+    if not res:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+        msg.exec()
 
 
 def edit_row():
@@ -769,7 +776,14 @@ def delete_selected():
         query = QSqlQuery()
         query.prepare("DELETE FROM Expert_final WHERE kod=?")
         query.bindValue(0, kod)
-        query.exec()
+        res = query.exec()
+        if not res:
+            msg = QMessageBox()
+            msg.setWindowIcon(QtGui.QIcon("icon.png"))
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setWindowTitle("Ошибка")
+            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.exec()
     table_model.select()
     load_all_data()
 
@@ -923,8 +937,15 @@ def include_in_eg():
                 expert_group_name[1]
             )
         )
-        query.exec()
-        # print(query.lastError().text())
+        res = query.exec()
+        if not res:
+            msg = QMessageBox()
+            msg.setWindowIcon(QtGui.QIcon("icon.png"))
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setWindowTitle("Ошибка")
+            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.exec()
+
         for kod in rows_selected_kod:
             query = QSqlQuery()
             query.prepare(
@@ -932,13 +953,27 @@ def include_in_eg():
                     kod
                 )
             )
-            query.exec()
+            res = query.exec()
+            if not res:
+                msg = QMessageBox()
+                msg.setWindowIcon(QtGui.QIcon("icon.png"))
+                msg.setIcon(QMessageBox.Icon.Critical)
+                msg.setWindowTitle("Ошибка")
+                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.exec()
             query.prepare(
                 """INSERT INTO '{}' SELECT * FROM Expert_final WHERE kod='{}'""".format(
                     expert_group_name[1], kod
                 )
             )
-            query.exec()
+            res = query.exec()
+            if not res:
+                msg = QMessageBox()
+                msg.setWindowIcon(QtGui.QIcon("icon.png"))
+                msg.setIcon(QMessageBox.Icon.Critical)
+                msg.setWindowTitle("Ошибка")
+                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.exec()
         table_model.select()
         load_all_data()
         delete_duplicates_in_eg(expert_group_name[1])
@@ -952,13 +987,27 @@ def include_in_eg():
                     kod
                 )
             )
-            query.exec()
+            res = query.exec()
+            if not res:
+                msg = QMessageBox()
+                msg.setWindowIcon(QtGui.QIcon("icon.png"))
+                msg.setIcon(QMessageBox.Icon.Critical)
+                msg.setWindowTitle("Ошибка")
+                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.exec()
             query.prepare(
                 """INSERT INTO '{}' SELECT * FROM Expert_final WHERE kod='{}'""".format(
                     expert_group_name[1], kod
                 )
             )
-            query.exec()
+            res = query.exec()
+            if not res:
+                msg = QMessageBox()
+                msg.setWindowIcon(QtGui.QIcon("icon.png"))
+                msg.setIcon(QMessageBox.Icon.Critical)
+                msg.setWindowTitle("Ошибка")
+                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.exec()
         table_model.select()
         load_all_data()
         delete_duplicates_in_eg(expert_group_name[1])
@@ -973,7 +1022,14 @@ def delete_duplicates_in_eg(expert_group_name):
             expert_group_name, expert_group_name
         )
     )
-    query.exec()
+    res = query.exec()
+    if not res:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+        msg.exec()
 
 
 def delete_selected_eg():
@@ -986,10 +1042,24 @@ def delete_selected_eg():
         query = QSqlQuery()
         query.prepare("UPDATE Expert_final SET status = 'Не состоит' WHERE kod=?")
         query.bindValue(0, kod)
-        query.exec()
+        res = query.exec()
+        if not res:
+            msg = QMessageBox()
+            msg.setWindowIcon(QtGui.QIcon("icon.png"))
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setWindowTitle("Ошибка")
+            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.exec()
         query.prepare("DELETE FROM '{}' WHERE kod=?".format(expert_group_name))
         query.bindValue(0, kod)
-        query.exec()
+        res = query.exec()
+        if not res:
+            msg = QMessageBox()
+            msg.setWindowIcon(QtGui.QIcon("icon.png"))
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setWindowTitle("Ошибка")
+            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.exec()
     table_model_eg.select()
     table_model.select()
     load_all_data()
@@ -1088,13 +1158,26 @@ def expert_group_sheet(wb, expert_group_name):
     ws = wb.active
     ws.title = expert_group_name
     ws.set_printer_settings(9, "landscape")
-    titles = ["№", "ФИО", "Регион", "Город", "ГРНТИ1", "ГРНТИ2"]
+    name_cell = ws.cell(row=1, column = 1)
+    ws.merge_cells('A1:F1')
+
     for row in ws.iter_rows(min_row=1, max_col=6, max_row=1):
+        i = 0
+        for cell in row:
+            cell.border = thin_border
+            cell.alignment = openpyxl.styles.Alignment(wrap_text=True)
+            i += 1
+    name_cell.font = openpyxl.styles.Font(name="Arial", size=10, bold=True)
+    name_cell.value = "Экспертная группа '{}'".format(expert_group_name)
+    name_cell.alignment = openpyxl.styles.Alignment(horizontal='center')
+    titles = ["№", "ФИО", "Регион", "Город", "ГРНТИ1", "ГРНТИ2"]
+    for row in ws.iter_rows(min_row=2, max_col=6, max_row=2):
         i = 0
         for cell in row:
             cell.font = openpyxl.styles.Font(name="Arial", size=10, bold=True)
             cell.value = titles[i]
             cell.border = thin_border
+
             i += 1
     con = sqlite3.connect(database_name)
     cur = con.cursor()
@@ -1106,7 +1189,7 @@ def expert_group_sheet(wb, expert_group_name):
     res = cur.fetchall()
     cur.close()
     con.close()
-    i = 1
+    i = 2
     for row in res:
         i += 1
         j = 1
@@ -1115,8 +1198,7 @@ def expert_group_sheet(wb, expert_group_name):
             cell.font = openpyxl.styles.Font(name="Arial", size=10)
             cell.border = thin_border
             if j == 1:
-
-                cell.value = i - 1
+                cell.value = i - 2
             else:
                 cell.value = col
             j += 1
