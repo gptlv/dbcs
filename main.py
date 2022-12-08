@@ -29,7 +29,8 @@ def connect_db(database_name):
     if not con.open():
         print("Database Error: %s" % con.lastError().databaseText())
         sys.exit(1)
-    print("Connection succeeded")
+    else:
+        print("Connection succeeded")
     # con.close()
 
 
@@ -83,10 +84,20 @@ def clicked_grnti():
 def get_reg_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data = cur.execute("SELECT DISTINCT region FROM Reg_obl_city").fetchall()
-    cur.close()
-    con.close()
-    return data
+    try:
+        data = cur.execute("SELECT DISTINCT region FROM Reg_obl_city").fetchall()
+        return data
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def populate_region_combobox():
@@ -108,10 +119,20 @@ def populate_region_filter_combobx():
 def get_obl_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data = cur.execute("SELECT DISTINCT oblname FROM Reg_obl_city").fetchall()
-    cur.close()
-    con.close()
-    return data
+    try:
+        data = cur.execute("SELECT DISTINCT oblname FROM Reg_obl_city").fetchall()
+        return data
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def populate_obl_combox():
@@ -133,10 +154,20 @@ def populate_obl_filter_combox():
 def get_city_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data = cur.execute("SELECT DISTINCT city FROM Reg_obl_city").fetchall()
-    cur.close()
-    con.close()
-    return data
+    try:
+        data = cur.execute("SELECT DISTINCT city FROM Reg_obl_city").fetchall()
+        return data
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def populate_city_combobox():
@@ -158,21 +189,41 @@ def populate_city_filter_combobox():
 def id_count():
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    last_id = cur.execute(
-        "SELECT kod FROM Expert_final ORDER BY kod DESC LIMIT 1"
-    ).fetchall()
-    cur.close()
-    con.close()
-    return sum(last_id[0])
+    try:
+        last_id = cur.execute(
+            "SELECT kod FROM Expert_final ORDER BY kod DESC LIMIT 1"
+        ).fetchall()
+        return sum(last_id[0])
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def get_codrub_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data = cur.execute("SELECT DISTINCT codrub FROM grntirub").fetchall()
-    cur.close()
-    con.close()
-    return data
+    try:
+        data = cur.execute("SELECT DISTINCT codrub FROM grntirub").fetchall()
+        return data
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def populate_codrub_filter_combobox():
@@ -186,10 +237,20 @@ def populate_codrub_filter_combobox():
 def get_rubrika_data(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data = cur.execute("SELECT DISTINCT rubrika FROM grntirub").fetchall()
-    cur.close()
-    con.close()
-    return data
+    try:
+        data = cur.execute("SELECT DISTINCT rubrika FROM grntirub").fetchall()
+        return data
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def populate_rubrika_filter_combobox():
@@ -260,63 +321,104 @@ def check_grnti_input(grnti):
 def same_person_check(name, city):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    res = cur.execute(
-        """SELECT COUNT(*) FROM Expert_final WHERE name = '{}' AND city = '{}'""".format(
-            name, city
-        )
-    ).fetchall()
-    res = sum(res[0])
-    cur.close()
-    con.close()
-    return res
+    try:
+        res = cur.execute(
+            """SELECT COUNT(*) FROM Expert_final WHERE name = '{}' AND city = '{}'""".format(
+                name, city
+            )
+        ).fetchall()
+        res = sum(res[0])
+        return res
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def get_obl_region_dict():
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data_tuple = cur.execute("SELECT region,oblname FROM Reg_obl_city ").fetchall()
-    cur.close()
-    con.close()
-    data_list = list(set(data_tuple))
-    region_list = []
-    obl_list = []
-    for i in range(len(data_list)):
-        region_list.append(data_list[i][0])
-        obl_list.append(data_list[i][1])
-    res_dict = dict(zip(obl_list, region_list))
-    return res_dict
+    try:
+        data_tuple = cur.execute("SELECT region,oblname FROM Reg_obl_city ").fetchall()
+        data_list = list(set(data_tuple))
+        region_list = []
+        obl_list = []
+        for i in range(len(data_list)):
+            region_list.append(data_list[i][0])
+            obl_list.append(data_list[i][1])
+        res_dict = dict(zip(obl_list, region_list))
+        return res_dict
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def get_city_region_dict():
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data_tuple = cur.execute("SELECT region,city FROM Reg_obl_city ").fetchall()
-    cur.close()
-    con.close()
-    data_list = list(set(data_tuple))
-    region_list = []
-    city_list = []
-    for i in range(len(data_list)):
-        region_list.append(data_list[i][0])
-        city_list.append(data_list[i][1])
-    res_dict = dict(zip(city_list, region_list))
-    return res_dict
+    try:
+        data_tuple = cur.execute("SELECT region,city FROM Reg_obl_city ").fetchall()
+        data_list = list(set(data_tuple))
+        region_list = []
+        city_list = []
+        for i in range(len(data_list)):
+            region_list.append(data_list[i][0])
+            city_list.append(data_list[i][1])
+        res_dict = dict(zip(city_list, region_list))
+        return res_dict
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def get_city_obl_dict():
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data_tuple = cur.execute("SELECT oblname,city FROM Reg_obl_city ").fetchall()
-    cur.close()
-    con.close()
-    data_list = list(set(data_tuple))
-    obl_list = []
-    city_list = []
-    for i in range(len(data_list)):
-        obl_list.append(data_list[i][0])
-        city_list.append(data_list[i][1])
-    res_dict = dict(zip(city_list, obl_list))
-    return res_dict
+
+    try:
+        data_tuple = cur.execute("SELECT oblname,city FROM Reg_obl_city ").fetchall()
+        data_list = list(set(data_tuple))
+        obl_list = []
+        city_list = []
+        for i in range(len(data_list)):
+            obl_list.append(data_list[i][0])
+            city_list.append(data_list[i][1])
+        res_dict = dict(zip(city_list, obl_list))
+        return res_dict
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def get_obl(city):
@@ -332,17 +434,27 @@ def region_city_check(region, city):
 def get_grntirub_dict():
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data_tuple = cur.execute("SELECT codrub,rubrika FROM grntirub ").fetchall()
-    cur.close()
-    con.close()
-    data_list = list(set(data_tuple))
-    codrub_list = []
-    rubrika_list = []
-    for i in range(len(data_list)):
-        codrub_list.append(data_list[i][0])
-        rubrika_list.append(data_list[i][1])
-    res_dict = dict(zip(codrub_list, rubrika_list))
-    return res_dict
+    try:
+        data_tuple = cur.execute("SELECT codrub,rubrika FROM grntirub ").fetchall()
+        data_list = list(set(data_tuple))
+        codrub_list = []
+        rubrika_list = []
+        for i in range(len(data_list)):
+            codrub_list.append(data_list[i][0])
+            rubrika_list.append(data_list[i][1])
+        res_dict = dict(zip(codrub_list, rubrika_list))
+        return res_dict
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 def get_key_words(grnti_list):
@@ -446,12 +558,23 @@ def get_input_data():
 def insert_into_db(values):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    cur.execute(
-        """INSERT INTO Expert_final VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""", values
-    ).fetchall()
-    con.commit()
-    cur.close()
-    con.close()
+
+    try:
+        cur.execute(
+            """INSERT INTO Expert_final VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""", values
+        ).fetchall()
+        con.commit()
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
 
 
 # ---Работа с таблицами
@@ -727,7 +850,9 @@ def edit_db_row(values):
         msg.setWindowIcon(QtGui.QIcon("icon.png"))
         msg.setIcon(QMessageBox.Icon.Critical)
         msg.setWindowTitle("Ошибка")
-        msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+        msg.setText(
+            str(query.lastError().text()) + "\n" + str(query.lastError().type())
+        )
         msg.exec()
 
 
@@ -782,7 +907,9 @@ def delete_selected():
             msg.setWindowIcon(QtGui.QIcon("icon.png"))
             msg.setIcon(QMessageBox.Icon.Critical)
             msg.setWindowTitle("Ошибка")
-            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.setText(
+                str(query.lastError().text()) + "\n" + str(query.lastError().type())
+            )
             msg.exec()
     table_model.select()
     load_all_data()
@@ -867,10 +994,21 @@ def export_expert_data():
 def get_table_names(database_name):
     con = sqlite3.connect(database_name)
     cur = con.cursor()
-    data = cur.execute("SELECT name FROM sqlite_schema").fetchall()
-    con.commit()
-    cur.close()
-    con.close()
+    try:
+        data = cur.execute("SELECT name FROM sqlite_schema").fetchall()
+        con.commit()
+        return data
+    except Exception as err:
+        msg = QMessageBox()
+        msg.setWindowIcon(QtGui.QIcon("icon.png"))
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Ошибка")
+        msg.setText(str(err))
+        msg.exec()
+        sys.exit(1)
+    finally:
+        cur.close()
+        con.close()
     return data
 
 
@@ -943,7 +1081,9 @@ def include_in_eg():
             msg.setWindowIcon(QtGui.QIcon("icon.png"))
             msg.setIcon(QMessageBox.Icon.Critical)
             msg.setWindowTitle("Ошибка")
-            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.setText(
+                str(query.lastError().text()) + "\n" + str(query.lastError().type())
+            )
             msg.exec()
 
         for kod in rows_selected_kod:
@@ -959,7 +1099,9 @@ def include_in_eg():
                 msg.setWindowIcon(QtGui.QIcon("icon.png"))
                 msg.setIcon(QMessageBox.Icon.Critical)
                 msg.setWindowTitle("Ошибка")
-                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.setText(
+                    str(query.lastError().text()) + "\n" + str(query.lastError().type())
+                )
                 msg.exec()
             query.prepare(
                 """INSERT INTO '{}' SELECT * FROM Expert_final WHERE kod='{}'""".format(
@@ -972,7 +1114,9 @@ def include_in_eg():
                 msg.setWindowIcon(QtGui.QIcon("icon.png"))
                 msg.setIcon(QMessageBox.Icon.Critical)
                 msg.setWindowTitle("Ошибка")
-                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.setText(
+                    str(query.lastError().text()) + "\n" + str(query.lastError().type())
+                )
                 msg.exec()
         table_model.select()
         load_all_data()
@@ -993,7 +1137,9 @@ def include_in_eg():
                 msg.setWindowIcon(QtGui.QIcon("icon.png"))
                 msg.setIcon(QMessageBox.Icon.Critical)
                 msg.setWindowTitle("Ошибка")
-                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.setText(
+                    str(query.lastError().text()) + "\n" + str(query.lastError().type())
+                )
                 msg.exec()
             query.prepare(
                 """INSERT INTO '{}' SELECT * FROM Expert_final WHERE kod='{}'""".format(
@@ -1006,7 +1152,9 @@ def include_in_eg():
                 msg.setWindowIcon(QtGui.QIcon("icon.png"))
                 msg.setIcon(QMessageBox.Icon.Critical)
                 msg.setWindowTitle("Ошибка")
-                msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+                msg.setText(
+                    str(query.lastError().text()) + "\n" + str(query.lastError().type())
+                )
                 msg.exec()
         table_model.select()
         load_all_data()
@@ -1028,7 +1176,9 @@ def delete_duplicates_in_eg(expert_group_name):
         msg.setWindowIcon(QtGui.QIcon("icon.png"))
         msg.setIcon(QMessageBox.Icon.Critical)
         msg.setWindowTitle("Ошибка")
-        msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+        msg.setText(
+            str(query.lastError().text()) + "\n" + str(query.lastError().type())
+        )
         msg.exec()
 
 
@@ -1048,7 +1198,9 @@ def delete_selected_eg():
             msg.setWindowIcon(QtGui.QIcon("icon.png"))
             msg.setIcon(QMessageBox.Icon.Critical)
             msg.setWindowTitle("Ошибка")
-            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.setText(
+                str(query.lastError().text()) + "\n" + str(query.lastError().type())
+            )
             msg.exec()
         query.prepare("DELETE FROM '{}' WHERE kod=?".format(expert_group_name))
         query.bindValue(0, kod)
@@ -1058,7 +1210,9 @@ def delete_selected_eg():
             msg.setWindowIcon(QtGui.QIcon("icon.png"))
             msg.setIcon(QMessageBox.Icon.Critical)
             msg.setWindowTitle("Ошибка")
-            msg.setText(str(query.lastError().text())+"\n"+str(query.lastError().type()))
+            msg.setText(
+                str(query.lastError().text()) + "\n" + str(query.lastError().type())
+            )
             msg.exec()
     table_model_eg.select()
     table_model.select()
@@ -1158,8 +1312,8 @@ def expert_group_sheet(wb, expert_group_name):
     ws = wb.active
     ws.title = expert_group_name
     ws.set_printer_settings(9, "landscape")
-    name_cell = ws.cell(row=1, column = 1)
-    ws.merge_cells('A1:F1')
+    name_cell = ws.cell(row=1, column=1)
+    ws.merge_cells("A1:F1")
 
     for row in ws.iter_rows(min_row=1, max_col=6, max_row=1):
         i = 0
@@ -1169,7 +1323,7 @@ def expert_group_sheet(wb, expert_group_name):
             i += 1
     name_cell.font = openpyxl.styles.Font(name="Arial", size=10, bold=True)
     name_cell.value = "Экспертная группа '{}'".format(expert_group_name)
-    name_cell.alignment = openpyxl.styles.Alignment(horizontal='center')
+    name_cell.alignment = openpyxl.styles.Alignment(horizontal="center")
     titles = ["№", "ФИО", "Регион", "Город", "ГРНТИ1", "ГРНТИ2"]
     for row in ws.iter_rows(min_row=2, max_col=6, max_row=2):
         i = 0
@@ -1394,6 +1548,7 @@ window_edit.setWindowTitle("Работа с таблицами")
 form_edit.deleteDataButton.setEnabled(False)
 form_edit.exportExpertDataButton.setEnabled(False)
 form_edit.addExpertToGroupButton.setEnabled(False)
+form_edit.databaseEditTableView.entered.connect(update_form_edit_buttons)
 form_edit.databaseEditTableView.clicked.connect(update_form_edit_buttons)
 form_edit.addDataButton.clicked.connect(open_add_window)
 
@@ -1590,7 +1745,9 @@ table_model_eg = QSqlTableModel()
 form_include_eg.expertGroupComboBox.currentTextChanged.connect(update_table_model_eg)
 
 form_include_eg.confirmExpertGroupButton.clicked.connect(confirm_eg)
-form_include_eg.confirmExpertGroupButton.clicked.connect(populate_eg_names_to_confirm_combobox)
+form_include_eg.confirmExpertGroupButton.clicked.connect(
+    populate_eg_names_to_confirm_combobox
+)
 
 form_edit.confirmExpertGroupButton.clicked.connect(open_include_window)
 form_edit.addExpertToGroupButton.clicked.connect(open_add_to_eg_window)
