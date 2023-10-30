@@ -1,36 +1,45 @@
-# СУБД 2022
-**<div align="center">Лабораторная работа по дисциплине "Системы управления базами данных"</div>**
+# Expertise Management System
 
-**<div align="center">Вариант 5. Управление организацией экспертизы научно-технических проектов.</div>**
+![screenshot](assets/sc.png)
 
-**Объект разработки** – автоматизированное рабочее место организаторов экспертизы научно-технических проектов.
+## Overview
 
-**Цель работы**: создание средств поддержки формирования экспертных групп для проведения экспертизы научно-технических проектов.
+This project is a CRUD application developed as a part of the "Database Management Systems" course. It focuses on managing the organization of expertise for scientific and technical projects. The objective is to create a tool that facilitates the formation of expert groups for conducting evaluations of these projects.
 
-**Информационный базис**: данные об ученых, давших принципиальное согласие на участие в экспертизах по своей области интересов.
+## Key Features
 
-**Экспертиза научно-технического проекта** (НТП) - формирование аргументированного заключения о целесообразности финансирования НТП на основе анализа его актуальности, научной состоятельности, технико-экономических характеристик. Заключение формируется на основе мнений нескольких независимых экспертов, составляющих экспертную группу по конкретному НТП. В начале экспертизы группа должна быть выбрана в соответствии с предметной областью НТП и областями интересов экспертов.
+### 1. Database Integrity Control
 
-Структура информации (файл _EXPERT.XLS_): код эксперта (символьный), фамилия и.о. эксперта, регион проживания, город, код ГРНТИ области интересов, ключевые слова, характеризующие область интересов, число участий в экспертизах, дата занесения в базу данных.
+Ensures the integrity of the system's source databases, with mechanisms for control and recovery.
 
-Структура информации о рубриках ГРНТИ (файл _GRNTIRUB.XLS_): наименование рубрики, код рубрики.
+### 2. Expert Information Management
 
-Справочная таблица _REG_OBL_CITY.XLS_ вхождения субъектов федерации (_oblname_) и городов (_city_) в федеральные округа (_region_).
+Allows the addition and editing of expert information in the database. It verifies newly entered data to ensure data integrity.
 
-**Требования к функциям**, реализуемым в программах анализа данных:
+### 3. Prevention of Duplicate Entries
 
-* контроль и восстановление целостности исходных баз данных системы;
+Controls the possible re-entry of expert data to avoid duplication.
 
-* добавление/редактирование информации об эксперте в базу данных, верификация вновь поступивших данных, обеспечение целостности данных;
+### 4. Data Filtering
 
-* контроль возможного повторного занесения данных об эксперте;
+Enables the filtering of information in the database based on criteria such as surname, federal district, subject of the federation, city, rubric, or GRNTI (Code of State Categories Scientific and Technical Information) code.
 
-* фильтрация информации в базе данных по указанной фамилии и/или федеральному округу и/или субъекту федерации и/или городу и/или рубрике или коду ГРНТИ и/или ключевым словам области интересов; фиксация отобранного подмножества в поименованную экспертную группу;
+### 5. Expert Group Formation
 
-* просмотр записей выбранной группы кандидатов на включение в состав экспертной группы с возможностью простановки/снятия отметок о принятии решения о включении кандидата в экспертную группу; фиксация результата в экспертной группе;
+Facilitates the formation of expert groups by fixing selected subsets into named expert groups.
 
-* просмотр записей исходной базы данных с возможностью простановки отметок об отборе эксперта в качестве кандидата на включение/добавление в экспертную группу, перенос сведений об отобранных кандидатах в выбранную экспертную группу;
+### 6. Candidate Review
 
-* утверждение экспертной группы без возможности дальнейшей корректировки состава с увеличением на 1 числа участий в экспертизах в основной базе данных;
+Provides the ability to view records of selected candidate groups for inclusion in the expert group. Allows marking decisions on including candidates in the group.
 
-* формирование документов: таблица со списком сформированной поименованной экспертной группы, содержащей столбцы: порядковый номер, фамилия И.О., регион, город, код ГРНТИ; карточка эксперта.
+### 7. Base Database Viewing
+
+Allows the viewing of records in the initial database with the ability to mark experts as candidates for inclusion in the expert group.
+
+### 8. Group Approval
+
+Allows the approval of an expert group with no further possibility of adjusting the composition, increasing the number of participations in evaluations in the main database.
+
+### 9. Document Generation
+
+Supports the generation of documents, including a table listing the formed expert group and individual expert cards.
